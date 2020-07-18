@@ -1,0 +1,1024 @@
+<div class="2colrow">
+        <input name="attr_earth_level" type="hidden">
+        <input name="attr_air_level" type="hidden">
+        <input name="attr_fire_level" type="hidden">
+        <input name="attr_water_level" type="hidden">
+        <input name="attr_hp_max" type="hidden">
+        <input name="attr_mp_max" type="hidden">
+        <input name="attr_level" type="hidden">
+        <input name="attr_spent_xp" type="hidden">
+        <input name="attr_current_xp" type="hidden">
+        <input name="attr_next_earth" type="hidden">
+        <input name="attr_next_air" type="hidden">
+        <input name="attr_next_fire" type="hidden">
+        <input name="attr_next_water" type="hidden">
+        <input name="attr_weapon_dmg" type="hidden">
+        <input name="attr_weapon_mult" type="hidden">
+        <input name="attr_weapon_astat" type="hidden">
+        <input name="attr_weapon_dstat" type="hidden">
+        <input name="attr_weapon_property" type="hidden">
+        <input name="attr_weapon_dmg_1" type="hidden">
+        <input name="attr_weapon_dmg_2" type="hidden">
+        <input name="attr_weapon_dmg_3" type="hidden">
+        <input name="attr_weapon_dmg_4" type="hidden">
+        <input name="attr_weapon_dmg_5" type="hidden">
+        <input name="attr_weapon_equipped" type="hidden" value="1">
+    
+    <div class="col">
+    	<label>Name:</label><input type="text" name="attr_character_name"/>
+		<label>Level:</label><span name="attr_level"></span><br />
+		<label>Total XP:</label><input type="number" name="attr_xp" /><br />
+        <label>Spent XP:</label><span name="attr_spent_xp"></span>
+        <label>Current XP:</label><span name="attr_current_xp"></span><br />
+        <h5>Earth: <span name="attr_next_earth"></span></h5>
+        <h5>Air: <span name="attr_next_air"></span></h5>
+        <h5>Fire: <span name="attr_next_fire"></span></h5>
+        <h5>Water: <span name="attr_next_water"></span></h5>
+	</div>
+
+<!--	<div class="col">
+		 <img src="https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/kitchensink/logo.png" />
+	</div>
+-->
+	<div class="col">
+		<label>Job:</label>
+        <select name="attr_job" class="ttype">
+                <option value="Adept">Adept</option>
+                <option value="Archer">Archer</option>
+                <option value="Artist">Artist</option>
+                <option value="Black Mage">Black Mage</option>
+                <option value="Druid">Druid</option>
+                <option value="Freelancer">Freelancer</option>
+                <option value="Monk">Monk</option>
+                <option value="Rogue">Rogue</option>
+                <option value="Time Mage">Time Mage</option>
+                <option value="Warrior">Warrior</option>
+                <option value="Time Mage">Time Mage</option>
+                <option value="White Mage">White Mage</option>
+        </select>
+        <br />
+		<label>Secondary:</label>
+        <select name="attr_secondary" class="ttype">
+                <option value="Alchemist">Alchemist</option>
+                <option value="Berserker">Berserker</option>
+                <option value="Defender">Defender</option>
+                <option value="Dervish">Dervish</option>
+                <option value="Fencer">Fencer</option>
+                <option value="Phalanx">Phalanx</option>
+                <option value="Rune Knight">Rune Knight</option>
+                <option value="Squire">Squire</option>
+                <option value="Wizard">Wizard</option>
+        </select>
+	</div>
+
+</div>
+
+<hr/>
+<div class="2colrow">
+	<div class="col">
+		<h2>Attributes</h2>
+        
+
+
+		<label>Earth </label><input type="number" name='attr_earth' class='sheet-short'>
+        <button type='roll' name='roll_testattack' value='&{template:default} {{name=@{character_name}}} {{result=[[1d100 + @{Earth}]]}}'></button>
+        <span name="attr_earth_level"></span>
+        <br />
+		<label>Air </label><input type="number" name='attr_air' class='sheet-short'>
+        <button type='roll' name='roll_testattack' value='&{template:default} {{name=@{character_name}}} {{result=[[1d100 + @{Air}]]}}'></button>
+        <span name="attr_air_level"></span>
+        <br />
+		<label>Fire </label><input type="number" name='attr_fire' class='sheet-short'>
+        <button type='roll' name='roll_testattack' value='&{template:default} {{name=@{character_name}}} {{result=[[1d100 + @{Fire}]]}}'></button>
+        <span name="attr_fire_level"></span>
+        <br />
+		<label>Water </label><input type="number" name='attr_water' class='sheet-short'>
+        <button type='roll' name='roll_testattack' value='&{template:default} {{name=@{character_name}}} {{result=[[1d100 + @{Water}]]}}'></button>
+        <span name="attr_water_level"></span>
+        <hr />
+        
+        <h2>Skills</h2>
+        
+        <fieldset class="repeating_skills"> 
+            <input type="text" name="attr_skillname" class="skillName" />
+            <input type="number" name="attr_skillvalue" />
+            <select name="attr_skillstat" class="stype">
+                <option value="Earth">Earth</option>
+                <option value="Air">Air</option>
+                <option value="Fire">Fire</option>
+                <option value="Water">Water</option>
+            </select>
+            <button type='roll' name='roll_testattack' value='&{template:default} {{name=@{character_name}}}{{result=[[@{skillvalue}d100k1]]}}'></button>
+        </fieldset>
+
+
+
+	</div>
+
+	<div class="col">
+		<h2>Derived Stats</h2>
+        <div class="stats">
+            <h3>Base</h3><h3>Max</h3><h3>Mult</h3>
+            <label>Hp</label><input type="text" name="attr_hp" /><span name="attr_hp_max"></span>
+            <select name="attr_hp_mult" class="mtype">
+                <option value="1">1x</option>
+                <option value="2">2x</option>
+                <option value="3">3x</option>
+                <option value="4">4x</option>
+                <option value="5">5x</option>
+                <option value="6">6x</option>
+                <option value="7">7x</option>
+                <option value="8">8x</option>
+                <option value="9">9x</option>
+                <option value="10">10x</option>
+                <option value="11">11x</option>
+            </select>
+            <br />
+            <label>Bonus Hp</label><input type="text" name="attr_hp_bonus" />
+            <br />
+            <label>Hp%</label><input type="text" name="attr_hp_perc" />
+            <br />
+            <label>Mp</label><input type="text" name="attr_mp" /><span name="attr_mp_max" ></span>
+            <select name="attr_mp_mult" class="mtype">
+                <option value="0">0x</option>
+                <option value="1">1x</option>
+                <option value="2">2x</option>
+                <option value="3">3x</option>
+                <option value="4">4x</option>
+                <option value="5">5x</option>
+                <option value="6">6x</option>
+                <option value="7">7x</option>
+                <option value="8">8x</option>
+                <option value="9">9x</option>
+                <option value="10">10x</option>
+                <option value="11">11x</option>
+            </select>
+            <br />
+            <label>Bonus Mp</label><input type="text" name="attr_mp_bonus" />
+            <br />
+            <label>Mp%</label><input type="text" name="attr_mp_perc" />
+        </div>
+        <div class="stats">
+            <label>Armor</label><input type="text" name="attr_armor"  />
+            <br />
+            <label>Magic Armor</label><input type="text" name="attr_magic_armor"  />
+        </div>
+
+
+	</div> <!-- end of col -->
+<!--
+	<div class="col">
+
+		<h2>Hindrances</h2>
+
+		<textarea name="attr_hindrances"></textarea>
+
+		<hr/>
+
+		<h2>Edges</h2>
+
+		<textarea name="attr_edges"></textarea>
+
+	</div>
+-->
+    
+</div>
+<div class="2colrow">
+        <div class="weapon">
+            <h5>Equipped Weapon: </h5>
+            <input type="text" name="attr_weapon_name" /><span> Dmg: </span><input type="number" name="attr_weapon_dmg" />
+            <button type="roll" name="roll_testattack" value='&{template:default} {{name=@{character_name}}{{result=[[@weapon_atk + 1d100 - 40]]}}'></button>
+        <!--    <h5>Equipped Weapon: </h5><input type="text" name="attr_weapon_name" />
+            <span>Dmg: </span><span name="attr_weapon_dmg"></span><input type="number" name="attr_weapon_mult" />
+            <select name="attr_weapon_astat" class="stype">
+                <option value="Earth">Earth</option>
+                <option value="Air">Air</option>
+                <option value="Fire">Fire</option>
+                <option value="Water">Water</option>
+            </select>
+            <span> vs <span>
+            <select name="attr_weapon_dstat" class="stype">
+                <option value="Earth">Earth</option>
+                <option value="Air">Air</option>
+                <option value="Fire">Fire</option>
+                <option value="Water">Water</option>
+            </select>  -->
+        </div>
+        <div class="armor">
+            <h5>Armor</h5><input type="text" name="attr_armor_name">
+        </div>
+        <div>
+            <h5>First Weapon: <input type="checkbox" name="attr_equip_weapon_1" /></h5><input type="text" name="attr_weapon_name_1" />
+            <span>Dmg: </span><span name="attr_weapon_dmg_1"></span><input type="number" name="attr_weapon_mult_1" />
+            <select name="attr_weapon_astat_1" class="stype">
+                <option value="Earth">Earth</option>
+                <option value="Air">Air</option>
+                <option value="Fire">Fire</option>
+                <option value="Water">Water</option>
+            </select>
+            <span> vs <span>
+            <select name="attr_weapon_dstat_1" class="stype">
+                <option value="Earth">Earth</option>
+                <option value="Air">Air</option>
+                <option value="Fire">Fire</option>
+                <option value="Water">Water</option>
+            </select>
+            <input type="text" name="attr_weapon_property_1" /><br />
+
+            <h5>Second Weapon: <input type="checkbox" name="attr_equip_weapon_2" /></h5><input type="text" name="attr_weapon_name_2" />
+            <span>Dmg: </span><span name="attr_weapon_dmg_2"></span><input type="number" name="attr_weapon_mult_2" />
+            <select name="attr_weapon_astat_2" class="stype">
+                <option value="Earth">Earth</option>
+                <option value="Air">Air</option>
+                <option value="Fire">Fire</option>
+                <option value="Water">Water</option>
+            </select>
+            <span> vs <span>
+            <select name="attr_weapon_dstat_2" class="stype">
+                <option value="Earth">Earth</option>
+                <option value="Air">Air</option>
+                <option value="Fire">Fire</option>
+                <option value="Water">Water</option>
+            </select>
+            <input type="text" name="attr_weapon_property_2" /><br />
+            
+            <h5>Third Weapon: <input type="checkbox" name="attr_equip_weapon_3" /></h5><input type="text" name="attr_weapon_name_3" />
+            <span>Dmg: </span><span name="attr_weapon_dmg_3"></span><input type="number" name="attr_weapon_mult_3" />
+            <select name="attr_weapon_astat_3" class="stype">
+                <option value="Earth">Earth</option>
+                <option value="Air">Air</option>
+                <option value="Fire">Fire</option>
+                <option value="Water">Water</option>
+            </select>
+            <span> vs <span>
+            <select name="attr_weapon_dstat_3" class="stype">
+                <option value="Earth">Earth</option>
+                <option value="Air">Air</option>
+                <option value="Fire">Fire</option>
+                <option value="Water">Water</option>
+            </select>
+            <input type="text" name="attr_weapon_property_3" /><br />
+            
+            <h5>Fourth Weapon: <input type="checkbox" name="attr_equip_weapon_4" /></h5><input type="text" name="attr_weapon_name_4" />
+            <span>Dmg: </span><span name="attr_weapon_dmg_4"></span><input type="number" name="attr_weapon_mult_4" />
+            <select name="attr_weapon_astat_4" class="stype">
+                <option value="Earth">Earth</option>
+                <option value="Air">Air</option>
+                <option value="Fire">Fire</option>
+                <option value="Water">Water</option>
+            </select>
+            <span> vs <span>
+            <select name="attr_weapon_dstat_4" class="stype">
+                <option value="Earth">Earth</option>
+                <option value="Air">Air</option>
+                <option value="Fire">Fire</option>
+                <option value="Water">Water</option>
+            </select>
+            <input type="text" name="attr_weapon_property_4" /><br />
+            
+            <h5>Fifth Weapon: <input type="checkbox" name="attr_equip_weapon_5" /></h5><input type="text" name="attr_weapon_name_5" />
+            <span>Dmg: </span><span name="attr_weapon_dmg_5"></span><input type="number" name="attr_weapon_mult_5" />
+            <select name="attr_weapon_astat_5" class="stype">
+                <option value="Earth">Earth</option>
+                <option value="Air">Air</option>
+                <option value="Fire">Fire</option>
+                <option value="Water">Water</option>
+            </select>
+            <span> vs <span>
+            <select name="attr_weapon_dstat_5" class="stype">
+                <option value="Earth">Earth</option>
+                <option value="Air">Air</option>
+                <option value="Fire">Fire</option>
+                <option value="Water">Water</option>
+            </select>
+            <input type="text" name="attr_weapon_property_5" /><br />
+
+        </div>
+        
+        <div class="accessory">
+        </div>
+        <div class="accessory">
+        </div>
+
+</div>
+
+<!-- Sheet Workers -->
+<script type="text/worker">
+
+function updateLevel()
+{
+    getAttrs(["earth_level", "air_level", "fire_level", "water_level"], function(values)
+        {
+
+            var foo = parseInt(values.earth_level) + parseInt(values.air_level) + parseInt(values.fire_level) + parseInt(values.water_level);
+            setAttrs({level: parseInt(foo)});
+            //setAttrs({level: 10});
+            //setAttrs({level: parseInt(values.earth_level) + parseInt(values.air_level) + parseInt(values.fire_level) + parseInt(values.water_level)});
+        });
+        updateHp_Max();
+        updateMp_Max();
+    
+}
+
+function updateHp_Max()
+{
+    getAttrs (["Earth", "Level", "hp_mult", "hp_perc", "hp_bonus"], function(values) 
+    {
+        setAttrs({hp_max: Math.floor( parseInt(values.Earth) + parseInt(values.hp_bonus) + ( parseInt(values.Level) * parseInt(values.hp_mult) * (1+(parseInt(values.hp_perc)/100) )))})
+    });
+
+}
+
+function updateMp_Max()
+{
+    getAttrs (["Water", "Level", "mp_mult", "mp_perc", "mp_bonus"], function(values) 
+    {
+        setAttrs({mp_max: Math.floor( parseInt(values.Water) + parseInt(values.mp_bonus) + ( parseInt(values.Level) * parseInt(values.mp_mult) * (1+(parseInt(values.mp_perc)/100) )))})
+    });
+}
+/*  turned off for testing purposes. */
+function updateEquippedWeapon(equipped)
+{
+    var one = 0;
+    var two = 0;
+    var three = 0;
+    var four = 0;
+    var five = 0;
+    var name = "Error";
+    var dmg = 0;
+    var property = "Error";
+    var attack = 0;
+    switch(equipped)
+    {
+        case 1:
+            one = "on";
+            getAttrs(["weapon_name_1","weapon_dmg_1","weapon_property_1"], function(values)
+            {
+
+                setAttrs({weapon_dmg: values.weapon_dmg_1});
+                setAttrs({weapon_name: values.weapon_name_1});
+                setAttrs({weapon_property: value.weapon_property_1});
+                //setAttrs({weapon_name: "BULLSHIT"});
+                setAttrs({weapon_equipped: 1});
+            });
+            break;
+        case 2:
+            two = "on";
+            getAttrs(["weapon_name_2","weapon_dmg_2","weapon_property_2"], function(values)
+            {
+                setAttrs({weapon_dmg: values.weapon_dmg_2});
+                setAttrs({weapon_name: values.weapon_name_2});
+                setAttrs({weapon_property: value.weapon_property_2});
+                //setAttrs({weapon_name: "BULLSHIT ASS WIPE"});
+                setAttrs({weapon_equipped: 2});
+            });
+            break;
+        case 3:
+            three = "on";
+            getAttrs(["weapon_name_3","weapon_dmg_3","weapon_property_3"], function(values)
+            {
+                setAttrs({weapon_dmg: values.weapon_dmg_3});
+                setAttrs({weapon_name: values.weapon_name_3});
+                setAttrs({weapon_property: value.weapon_property_3});
+                setAttrs({weapon_equipped: 3});
+            });
+            break;
+        case 4:
+            four = "on";
+            getAttrs(["weapon_name_4","weapon_dmg_4","weapon_property_4"], function(values)
+            {
+                setAttrs({weapon_dmg: values.weapon_dmg_4});
+                setAttrs({weapon_name: values.weapon_name_4});
+                setAttrs({weapon_property: value.weapon_property_4});
+                setAttrs({weapon_equipped: 4});
+            });
+            break;
+        case 5:
+            five = "on";
+            getAttrs(["weapon_name_5","weapon_dmg_5","weapon_property_5"], function(values)
+            {
+                setAttrs({weapon_dmg: values.weapon_dmg_5});
+                setAttrs({weapon_name: values.weapon_name_5});
+                setAttrs({weapon_property: value.weapon_property_5});
+                setAttrs({weapon_equipped: 5});
+            });
+            break;
+    }
+
+    setAttrs({equip_weapon_1: one});
+    setAttrs({equip_weapon_2: two});
+    setAttrs({equip_weapon_3: three});
+    setAttrs({equip_weapon_4: four});
+    setAttrs({equip_weapon_5: five});
+}
+
+/* Turned off for testing purposes. Something broken herein lies */
+function updateWeaponDmg(x)
+{
+    
+    switch(x)
+    {
+        case 0:
+            getAttrs (["weapon_equipped"], function(values)
+            {
+                updateWeaponDmg(values.weapon_equipped);
+            });
+            break;
+        case 1:
+            getAttrs (["weapon_mult_1", "weapon_astat_1", "earth_level", "air_level", "fire_level", "water_level"], function(values)
+            {
+                var dmg = 0;
+                switch(values.weapon_astat_1)
+                {
+                    case "Earth":
+                        dmg = values.earth_level;
+                        break;
+                    case "Air":
+                        dmg = values.air_level;
+                        break;
+                    case "Fire":
+                        dmg = values.fire_level;
+                        break;
+                    case "Water":
+                        dmg = values.water_level;
+                        break;
+                    default:
+                        dmg = -1;
+                }
+                dmg = dmg * values.weapon_mult_1;
+                setAttrs({weapon_dmg_1: dmg});
+            });
+            break;
+        case 2:
+            getAttrs (["weapon_mult_2", "weapon_astat_2", "earth_level", "air_level", "fire_level", "water_level"], function(values)
+            {
+                var dmg = 0;
+                switch(values.weapon_astat_2)
+                {
+                    case "Earth":
+                        dmg = values.earth_level;
+                        break;
+                    case "Air":
+                        dmg = values.air_level;
+                        break;
+                    case "Fire":
+                        dmg = values.fire_level;
+                        break;
+                    case "Water":
+                        dmg = values.water_level;
+                        break;
+                    default:
+                        dmg = -1;
+                }
+                dmg = dmg * values.weapon_mult_2;
+                setAttrs({weapon_dmg_2: dmg});
+            });
+            break;
+        case 3:
+            getAttrs (["weapon_mult_3", "weapon_astat_3", "earth_level", "air_level", "fire_level", "water_level"], function(values)
+            {
+                var dmg = 0;
+                switch(values.weapon_astat_3)
+                {
+                    case "Earth":
+                        dmg = values.earth_level;
+                        break;
+                    case "Air":
+                        dmg = values.air_level;
+                        break;
+                    case "Fire":
+                        dmg = values.fire_level;
+                        break;
+                    case "Water":
+                        dmg = values.water_level;
+                        break;
+                    default:
+                        dmg = -1;
+                }
+                dmg = dmg * values.weapon_mult_3;
+                setAttrs({weapon_dmg_3: dmg});
+            });
+            break;
+        case 4:
+            getAttrs (["weapon_mult_4", "weapon_astat_4", "earth_level", "air_level", "fire_level", "water_level"], function(values)
+            {
+                var dmg = 0;
+                switch(values.weapon_astat_4)
+                {
+                    case "Earth":
+                        dmg = values.earth_level;
+                        break;
+                    case "Air":
+                        dmg = values.air_level;
+                        break;
+                    case "Fire":
+                        dmg = values.fire_level;
+                        break;
+                    case "Water":
+                        dmg = values.water_level;
+                        break;
+                    default:
+                        dmg = -1;
+                }
+                dmg = dmg * values.weapon_mult_4;
+                setAttrs({weapon_dmg_4: dmg});
+            });
+            break;
+        case 5:
+            getAttrs (["weapon_mult_5", "weapon_astat_5", "earth_level", "air_level", "fire_level", "water_level"], function(values)
+            {
+                var dmg = 0;
+                switch(values.weapon_astat_5)
+                {
+                    case "Earth":
+                        dmg = values.earth_level;
+                        break;
+                    case "Air":
+                        dmg = values.air_level;
+                        break;
+                    case "Fire":
+                        dmg = values.fire_level;
+                        break;
+                    case "Water":
+                        dmg = values.water_level;
+                        break;
+                    default:
+                        dmg = -1;
+                }
+                dmg = dmg * values.weapon_mult_5;
+                setAttrs({weapon_dmg_5: dmg});
+            });
+            break;
+        default:
+        /* Something broken in here */
+            getAttrs (["weapon_mult_1","weapon_mult_2","weapon_mult_3","weapon_mult_4","weapon_mult_5", "weapon_astat_1","weapon_astat_2","weapon_astat_3","weapon_astat_4","weapon_astat_5", "earth_level", "air_level", "fire_level", "water_level"], function(values)
+            {
+                var dmg_1 = 0;
+                var dmg_2 = 0;
+                var dmg_3 = 0;
+                var dmg_4 = 0;
+                var dmg_5 = 0;
+                switch(values.weapon_astat_1)
+                {
+                    case "Earth":
+                        dmg_1 = values.earth_level;
+                        break;
+                    case "Air":
+                        dmg_1 = values.air_level;
+                        break;
+                    case "Fire":
+                        dmg_1 = values.fire_level;
+                        break;
+                    case "Water":
+                        dmg_1 = values.water_level;
+                        break;
+                    default:
+                        dmg = -1;
+                }
+                switch(values.weapon_astat_2)
+                {
+                    case "Earth":
+                        dmg_2 = values.earth_level;
+                        break;
+                    case "Air":
+                        dmg_2 = values.air_level;
+                        break;
+                    case "Fire":
+                        dmg_2 = values.fire_level;
+                        break;
+                    case "Water":
+                        dmg_2 = values.water_level;
+                        break;
+                    default:
+                        dmg = -1;
+                }
+                switch(values.weapon_astat_3)
+                {
+                    case "Earth":
+                        dmg_3 = values.earth_level;
+                        break;
+                    case "Air":
+                        dmg_3 = values.air_level;
+                        break;
+                    case "Fire":
+                        dmg_3 = values.fire_level;
+                        break;
+                    case "Water":
+                        dmg_3 = values.water_level;
+                        break;
+                    default:
+                        dmg = -1;
+                }
+                switch(values.weapon_astat_4)
+                {
+                    case "Earth":
+                        dmg_4 = values.earth_level;
+                        break;
+                    case "Air":
+                        dmg_4 = values.air_level;
+                        break;
+                    case "Fire":
+                        dmg_4 = values.fire_level;
+                        break;
+                    case "Water":
+                        dmg_4 = values.water_level;
+                        break;
+                    default:
+                        dmg = -1;
+                }
+                switch(values.weapon_astat_5)
+                {
+                    case "Earth":
+                        dmg_5 = values.earth_level;
+                        break;
+                    case "Air":
+                        dmg_5 = values.air_level;
+                        break;
+                    case "Fire":
+                        dmg_5 = values.fire_level;
+                        break;
+                    case "Water":
+                        dmg_5 = values.water_level;
+                        break;
+                    default:
+                        dmg = -1;
+                }
+
+
+
+
+                dmg_1 = dmg_5 * values.weapon_mult_1;
+                dmg_2 = dmg_5 * values.weapon_mult_2;
+                dmg_3 = dmg_5 * values.weapon_mult_3;
+                dmg_4 = dmg_5 * values.weapon_mult_4;
+                dmg_5 = dmg_5 * values.weapon_mult_5;
+                setAttrs({weapon_dmg_1: dmg_1});
+                setAttrs({weapon_dmg_2: dmg_2});
+                setAttrs({weapon_dmg_3: dmg_3});
+                setAttrs({weapon_dmg_4: dmg_4});
+                setAttrs({weapon_dmg_5: dmg_5});
+            });
+            
+            //break;
+    }
+}
+
+
+function totalXPCost(level)
+{
+    var xp = 0;
+    var dif = 0;
+
+  //  level = parseInt(arguments[0]);
+    
+ //   return level;
+
+    if(level<121)
+    { 
+        if(level<61)
+        { 
+            if(level<31)
+            {
+                if(level<11)
+                { 
+                    return level;
+                }
+                else if(level<21)
+                {   
+                    dif = level - 10;
+                    return 10 + (dif * 3);
+                }
+                else
+                {
+                    dif = level - 20;
+                    return 40 + (dif * 5);
+                }
+            }
+            else
+            {
+                // <61 >30
+                if(level<41)
+                {
+                    dif = level - 30;
+                    return 90 + (dif * 7);
+                }
+                else if(level<51)
+                {
+                    dif = level - 40;
+                    return 160 + (dif * 9);
+                }
+                else
+                {
+                    dif = level - 50;
+                    return 250 + (dif * 11);
+                }
+            }
+        } 
+        else
+        {  // Greater than 60, less than 120
+            if(level < 91)
+            {
+                if(level < 71)
+                {
+                    dif = level - 60;
+                    return 360 + (dif * 13);
+                }
+                else if(level < 81)
+                {
+                    dif = level - 70;
+                    return 490 + (dif * 15);
+                }
+                else
+                {
+                    dif = level - 80;
+                    return 640 + (dif * 17);
+                }
+            }
+            else
+            {
+                if(level<101)
+                {
+                    dif = level - 90;
+                    return 810 + (dif * 19);
+                }
+                else if(level<111)
+                {
+                    dif = level - 100;
+                    return 1000 + (dif * 21);
+                }
+                else
+                {
+                    dif = level - 110;
+                    return 1210 + (dif * 23);
+                }
+            }
+        
+        }
+        
+    }
+    else
+    {  // greater than 120, <255
+        
+        if(level < 181)
+        { // 120 to 180
+            if(level < 151)
+            { // 120 to 150
+                if(level < 131)
+                {
+                    dif = level - 120;
+                    return 1440 + (dif * 25);
+                }
+                else if(level < 141)
+                {
+                    dif = level - 130;
+                    return 1690 + (dif * 27);
+                }
+                else
+                {
+                    dif = level - 140;
+                    return 1960 + (dif * 29);
+                }
+
+
+            }
+            else
+            { //151 to 180
+                if(level < 161)
+                {
+                    dif = level - 150;
+                    return 2250 + (dif * 31);
+                }
+                else if(level < 171)
+                {
+                    dif = level - 160;
+                    return 2560 + (dif * 33);
+                }
+                else
+                {
+                    dif = level - 170;
+                    return 2890 + (dif * 35);
+                }
+
+            }
+
+        }
+        else
+        { //181 to 255
+            if(level < 211)
+            { // 181 to 210
+                if(level < 191)
+                {
+                    dif = level - 180;
+                    return 3240 + (dif * 37);
+                }
+                else if(level < 201)
+                {
+                    dif = level - 190;
+                    return 3610 + (dif * 39);
+                }
+                else
+                {
+                    dif = level - 200;
+                    return 4000 + (dif * 41);
+                }
+            }
+            else
+            { // 211 to 255 vvv Safe
+                
+                if(level < 221)
+                {
+                    dif = level - 210;
+                    return 4410 + (dif * 43);
+                }
+                else if(level < 231)
+                {
+                    dif = level - 220;
+                    return 4840 + (dif * 45);
+                }
+                else if(level < 241)
+                {
+                    dif = level - 230;
+                    return 5290 + (dif * 47);
+                }
+                else if(level < 251)
+                {
+                    dif = level - 240;
+                    return 5760 + (dif * 49);
+                }
+                else
+                {
+                    dif = level - 250;
+                    return 6250 + (dif * 51);
+                }
+                
+
+            }
+
+        }
+    
+    }
+    
+    return -1;
+    //return "Error";
+    
+}
+
+function updateSpent_Xp()
+{
+    getAttrs (["Earth","Air","Fire","Water","xp"], function(values)
+    {
+        var xxp = 0;
+        xxp = xxp + parseInt(totalXPCost(values.Earth));
+        xxp = xxp + parseInt(totalXPCost(values.Air));
+        xxp = xxp + parseInt(totalXPCost(values.Fire));
+        xxp = xxp + parseInt(totalXPCost(values.Water));
+        setAttrs({spent_xp: parseInt(xxp)});
+        setAttrs({current_xp: values.xp - xxp})
+    });
+
+}
+
+
+
+on("change:earth", function(eventInfo) 
+{ 
+    setAttrs ({earth_level: Math.floor(eventInfo.newValue / 10) });
+    updateHp_Max();
+    setAttrs ({next_earth: Math.floor(eventInfo.newValue/10)*2 + 1});
+    updateSpent_Xp();
+});
+
+on("change:air", function(eventInfo) 
+{ 
+    setAttrs ({air_level: Math.floor(eventInfo.newValue / 10) });
+    setAttrs ({next_air: Math.floor(eventInfo.newValue/10)*2 + 1});
+    updateSpent_Xp();
+
+});
+
+on("change:fire", function(eventInfo) 
+{ 
+    setAttrs ({fire_level: Math.floor(eventInfo.newValue / 10) });
+    setAttrs ({next_fire: Math.floor(eventInfo.newValue/10)*2 + 1});
+    updateSpent_Xp();
+});  
+
+on("change:water", function(eventInfo) 
+{ 
+    setAttrs ({water_level: Math.floor(eventInfo.newValue / 10) }); 
+    updateMp_Max();
+    setAttrs ({next_water: Math.floor(eventInfo.newValue/10)*2 + 1});
+    updateSpent_Xp();
+});
+
+on("change:earth_level", function()
+{
+    updateLevel();
+    updateWeaponDmg(6);
+});
+
+on("change:air_level", function() 
+{
+    updateLevel();
+    updateWeaponDmg(6);
+
+});
+
+on("change:fire_level", function() 
+{
+    updateLevel();
+    updateWeaponDmg(6);
+
+});
+
+on("change:water_level", function() 
+{
+    updateLevel();
+    updateWeaponDmg(6);
+
+});
+ 
+
+on("change:hp_bonus", function () {updateHp_Max()} );
+
+on("change:hp_mult", function () {updateHp_Max()} );
+
+on("change:hp_perc", function () {updateHp_Max()} );
+
+on("change:weapon_mult_1", function () 
+{ 
+    updateWeaponDmg(1);
+});
+
+on("change:weapon_astat_1", function () 
+{ 
+    updateWeaponDmg(1);
+});
+
+on("change:weapon_mult_2", function () 
+{ 
+    updateWeaponDmg(2);
+});
+
+on("change:weapon_astat_2", function () 
+{ 
+    updateWeaponDmg(2);
+});
+
+on("change:weapon_mult_3", function () 
+{ 
+    updateWeaponDmg(3);
+});
+
+on("change:weapon_astat_3", function () 
+{ 
+    updateWeaponDmg(3);
+});
+
+on("change:weapon_mult_4", function () 
+{ 
+    updateWeaponDmg(4);
+});
+
+on("change:weapon_astat_4", function () 
+{ 
+    updateWeaponDmg(4);
+});
+
+on("change:weapon_mult_5", function () 
+{ 
+    updateWeaponDmg(5);
+});
+
+on("change:weapon_astat_5", function () 
+{ 
+    updateWeaponDmg(5);
+});
+
+on("change:equip_weapon_1", function (eventInfo) 
+{
+    if(eventInfo.sourceType=="player")
+      updateEquippedWeapon(1);
+});
+
+on("change:equip_weapon_2", function (eventInfo) 
+{
+    if(eventInfo.sourceType=="player")
+      updateEquippedWeapon(2);
+});
+on("change:equip_weapon_3", function (eventInfo) 
+{
+    if(eventInfo.sourceType=="player")
+      updateEquippedWeapon(3);
+});
+on("change:equip_weapon_4", function (eventInfo) 
+{
+    if(eventInfo.sourceType=="player")
+      updateEquippedWeapon(4);
+});
+on("change:equip_weapon_5", function (eventInfo) 
+{
+    if(eventInfo.sourceType=="player")
+      updateEquippedWeapon(5);
+});
+</script>
