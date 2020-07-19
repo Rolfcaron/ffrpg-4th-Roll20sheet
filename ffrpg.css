@@ -31,9 +31,53 @@ textarea {
 	resize: vertical;
 }
 
+/* -----Hides up/down buttons on numberfields that don't need them ---*/
+
+input[type=number].sheet-ref::-webkit-inner-spin-button,
+input[type=number].sheet-ref::-webkit-outer-spin-button,
+input[type=number].sheet-txtfield::-webkit-inner-spin-button,
+input[type=number].sheet-txtfield::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number].sheet-ref,
+input[type=number].sheet-txtfield {
+  -moz-appearance: textfield;
+}
+
 /* Targetted styling that only effects elements with these classes */
 input.sheet-short {
 	width: 60px;
+}
+
+input.sheet-actionName {
+	width: 120px;
+}
+
+input.sheet-numHundred {
+	width: 60px;
+}
+
+input.sheet-numTen {
+	width: 50px;
+}
+
+input.sheet-actionDesc {
+	width: 400px;
+}
+
+span.sheet-small {
+	width: 120px;
+}
+
+span.sheet-fourd {
+	display: inline-block;
+	width: 35px;
+}
+
+span.sheet-eightd {
+	display: inline-block;
+	width: 70px;
 }
 
 input.sheet-skillName {
@@ -45,14 +89,44 @@ select.sheet-dtype {
     width: 60px;
 }
 
+select.sheet-resist {
+	vertical-align: top;
+	width: 100px;
+}
+
 select.sheet-mtype {
     vertical-align: top;
     width: 45px;
 }
 
+select.sheet-actionSlow {
+	vertical-align: top;
+	width: 100px;
+}
+
+select.sheet-element {
+	vertical-align: top;
+	width: 100px;
+}
+
 select.sheet-ttype {
 	vertical-align: top;
 	width: 140px;
+}
+
+select.sheet-status {
+	vertical-align: top;
+	width: 100px;
+}
+
+select.sheet-welement {
+	vertical-align: top;
+	width: 80px;
+}
+
+select.sheet-vsArmor {
+	vertical-align: top;
+	width: 80px;
 }
 
 select.sheet-stype {

@@ -23,6 +23,13 @@
         <input name="attr_weapon_dmg_4" type="hidden">
         <input name="attr_weapon_dmg_5" type="hidden">
         <input name="attr_weapon_equipped" type="hidden" value="1">
+        <input name="attr_weapon_name" type="hidden">
+        <input name="attr_weap_property" type="hidden" value="default">
+        <input name="attr_weap_name" type="hidden" value="default">
+        <input name="attr_weap_dmg" type="hidden" value = "-1">
+        <input name="attr_hpMaxEarthFire" type="hidden" value = "0">
+
+
     
     <div class="col">
     	<label>Name:</label><input type="text" name="attr_character_name"/>
@@ -70,6 +77,16 @@
                 <option value="Wizard">Wizard</option>
         </select>
 	</div>
+    <div>
+        <h4>Traits</h4>
+            <input type="text" name="attr_trait1" /><br />
+            <input type="text" name="attr_trait2" /><br />
+            <input type="text" name="attr_trait3" />
+        <h4>Quirks</h4>
+            <input type="text" name="attr_quirk1" /><br />
+            <input type="text" name="attr_quirk2" /><br />
+            <input type="text" name="attr_quirk3" />
+    </div>
 
 </div>
 
@@ -96,7 +113,12 @@
         <button type='roll' name='roll_testattack' value='&{template:default} {{name=@{character_name}}} {{result=[[1d100 + @{Water}]]}}'></button>
         <span name="attr_water_level"></span>
         <hr />
-        
+
+        <h2>Initiative</h2>
+            <span>Modifier to each: </span>
+            <input type="number" name="attr_modInit" placeholder="0">
+            <button type="roll" name="roll_initiative" value='&{template:default} {{name=@{character_name}}} {{result=[[1d10+@{modInit} &{tracker:+}]]}}'></button>
+            <span>Roll this once per initiative die you have (default 3)</span>
         <h2>Skills</h2>
         
         <fieldset class="repeating_skills"> 
@@ -134,9 +156,9 @@
                 <option value="11">11x</option>
             </select>
             <br />
-            <label>Bonus Hp</label><input type="text" name="attr_hp_bonus" />
-            <br />
-            <label>Hp%</label><input type="text" name="attr_hp_perc" />
+            <span>Bonus & % HP</span>
+            <input type="text" name="attr_hp_bonus" />
+            <input type="text" name="attr_hp_perc" />
             <br />
             <label>Mp</label><input type="text" name="attr_mp" /><span name="attr_mp_max" ></span>
             <select name="attr_mp_mult" class="mtype">
@@ -154,14 +176,30 @@
                 <option value="11">11x</option>
             </select>
             <br />
-            <label>Bonus Mp</label><input type="text" name="attr_mp_bonus" />
-            <br />
-            <label>Mp%</label><input type="text" name="attr_mp_perc" />
+            <span>Bonus & % MP</span>
+            <input type="text" name="attr_mp_bonus" />
+            <input type="text" name="attr_mp_perc" />
         </div>
         <div class="stats">
-            <label>Armor</label><input type="text" name="attr_armor"  />
+            <label>Armor: </label>
+            <span name="attr_armor"></span>
+            <select name="attr_armstat" class="stype">
+                <option value="None">No Stat</option>
+                <option value="Earth">Earth</option>
+                <option value="Air">Air</option>
+                <option value="Fire">Fire</option>
+                <option value="Water">Water</option>
+            </select>
             <br />
-            <label>Magic Armor</label><input type="text" name="attr_magic_armor"  />
+            <label>Magic Armor: </label>
+            <span name="attr_marmor"></span>
+            <select name="attr_marmstat" class="stype">
+                <option value="None">No Stat</option>
+                <option value="Earth">Earth</option>
+                <option value="Air">Air</option>
+                <option value="Fire">Fire</option>
+                <option value="Water">Water</option>
+            </select>
         </div>
 
 
@@ -181,126 +219,819 @@
 
 	</div>
 -->
+
     
+
+
+
+
 </div>
 <div class="2colrow">
+
         <div class="weapon">
             <h5>Equipped Weapon: </h5>
-            <input type="text" name="attr_weapon_name" /><span> Dmg: </span><input type="number" name="attr_weapon_dmg" />
-            <button type="roll" name="roll_testattack" value='&{template:default} {{name=@{character_name}}{{result=[[@weapon_atk + 1d100 - 40]]}}'></button>
-        <!--    <h5>Equipped Weapon: </h5><input type="text" name="attr_weapon_name" />
-            <span>Dmg: </span><span name="attr_weapon_dmg"></span><input type="number" name="attr_weapon_mult" />
-            <select name="attr_weapon_astat" class="stype">
-                <option value="Earth">Earth</option>
-                <option value="Air">Air</option>
-                <option value="Fire">Fire</option>
-                <option value="Water">Water</option>
+            <select name="attr_weapon_equipped" class="stype">
+                <option value="1">1st</option>
+                <option value="2">2nd</option>
+                <option value="3">3rd</option>
+                <option value="4">4th</option>
+                <option value="5">5th</option>
             </select>
-            <span> vs <span>
-            <select name="attr_weapon_dstat" class="stype">
-                <option value="Earth">Earth</option>
-                <option value="Air">Air</option>
-                <option value="Fire">Fire</option>
-                <option value="Water">Water</option>
-            </select>  -->
+            <span name="attr_weapon_equipped"></span>
+            <span name="attr_weap_name"></span>
+            <span> Dmg: </span><span name="attr_weap_dmg"> </span>
+            <span name="attr_weap_element"></span>
+            <span> Property: </span><span name="attr_weap_property"></span>
+            <br />
+            
+        
         </div>
         <div class="armor">
-            <h5>Armor</h5><input type="text" name="attr_armor_name">
+            <h5>Armor</h5>
+            <input type="text" name="attr_armor_name">
+            <input type="number" name="attr_armor_arm">
+            <input type="number" name="attr_armor_marm">
+            <input type="text" name="attr_armor_property">
+        </div>
+        <div class="accessory">
+            <h5>Accessories</h5>
+            <input type="text" name="attr_acc1_name" /><input type="text" name="attr_acc1_property" /><br />
+            <input type="text" name="attr_acc2_name" /><input type="text" name="attr_acc2_property" />
+        </div>
+        <div class="accessory">
         </div>
         <div>
-            <h5>First Weapon: <input type="checkbox" name="attr_equip_weapon_1" /></h5><input type="text" name="attr_weapon_name_1" />
-            <span>Dmg: </span><span name="attr_weapon_dmg_1"></span><input type="number" name="attr_weapon_mult_1" />
+            <h5>Weapons</h5>
+            <span class="fourd">1st:</span><input type="text" name="attr_weapon_name_1" placeholder="Weapon Name"/>
+            <span>Dmg: </span><span name="attr_weapon_dmg_1" class="fourd"></span>
             <select name="attr_weapon_astat_1" class="stype">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
                 <option value="Water">Water</option>
             </select>
-            <span> vs <span>
+            <span> x </span>
+            <input type="number" name="attr_weapon_mult_1" />
+            <span> vs </span>
             <select name="attr_weapon_dstat_1" class="stype">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
                 <option value="Water">Water</option>
             </select>
-            <input type="text" name="attr_weapon_property_1" /><br />
+            <select name="attr_weapon_element_1" class="element">   
+                <option value="Crush">Crush</option>
+                <option value="Puncture">Puncture</option>
+                <option value="Cut">Cut</option>
+                <option value="Fire">Fire</option>
+                <option value="Ice">Lightning</option>
+                <option value="Lightning">Lightning</option>
+                <option value="Air">Air</option>
+                <option value="Earth">Earth</option>
+                <option value="Water">Water</option>
+                <option value="Bio">Bio</option>
+                <option value="Light">Light</option>
+                <option value="Shadow">Shadow</option>
+                <option value="Non-Element">Non-Element</option>
+            </select>
+            <input type="text" name="attr_weapon_property_1" placeholder="Weapon Property (if any)"/><br />
 
-            <h5>Second Weapon: <input type="checkbox" name="attr_equip_weapon_2" /></h5><input type="text" name="attr_weapon_name_2" />
-            <span>Dmg: </span><span name="attr_weapon_dmg_2"></span><input type="number" name="attr_weapon_mult_2" />
+            <span class="fourd">2nd:</span><input type="text" name="attr_weapon_name_2" placeholder="Weapon Name"/>
+            <span>Dmg: </span><span name="attr_weapon_dmg_2" class="fourd"></span>
             <select name="attr_weapon_astat_2" class="stype">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
                 <option value="Water">Water</option>
             </select>
-            <span> vs <span>
+            <span> x </span>
+            <input type="number" name="attr_weapon_mult_2" />
+            <span> vs </span>
             <select name="attr_weapon_dstat_2" class="stype">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
                 <option value="Water">Water</option>
             </select>
-            <input type="text" name="attr_weapon_property_2" /><br />
+            <select name="attr_weapon_element_2" class="element">   
+                <option value="Crush">Crush</option>
+                <option value="Puncture">Puncture</option>
+                <option value="Cut">Cut</option>
+                <option value="Fire">Fire</option>
+                <option value="Ice">Lightning</option>
+                <option value="Lightning">Lightning</option>
+                <option value="Air">Air</option>
+                <option value="Earth">Earth</option>
+                <option value="Water">Water</option>
+                <option value="Bio">Bio</option>
+                <option value="Light">Light</option>
+                <option value="Shadow">Shadow</option>
+                <option value="Non-Element">Non-Element</option>
+            </select>
+            <input type="text" name="attr_weapon_property_2" placeholder="Weapon Property (if any)"/><br />
             
-            <h5>Third Weapon: <input type="checkbox" name="attr_equip_weapon_3" /></h5><input type="text" name="attr_weapon_name_3" />
-            <span>Dmg: </span><span name="attr_weapon_dmg_3"></span><input type="number" name="attr_weapon_mult_3" />
+            <span class="fourd">3rd:</span><input type="text" name="attr_weapon_name_3" placeholder="Weapon Name"/>
+            <span>Dmg: </span><span name="attr_weapon_dmg_3" class="fourd"></span>
             <select name="attr_weapon_astat_3" class="stype">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
                 <option value="Water">Water</option>
             </select>
-            <span> vs <span>
+            <span> x </span>
+            <input type="number" name="attr_weapon_mult_3" />
+            <span> vs </span>
             <select name="attr_weapon_dstat_3" class="stype">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
                 <option value="Water">Water</option>
             </select>
-            <input type="text" name="attr_weapon_property_3" /><br />
+            <select name="attr_weapon_element_3" class="element">   
+                <option value="Crush">Crush</option>
+                <option value="Puncture">Puncture</option>
+                <option value="Cut">Cut</option>
+                <option value="Fire">Fire</option>
+                <option value="Ice">Lightning</option>
+                <option value="Lightning">Lightning</option>
+                <option value="Air">Air</option>
+                <option value="Earth">Earth</option>
+                <option value="Water">Water</option>
+                <option value="Bio">Bio</option>
+                <option value="Light">Light</option>
+                <option value="Shadow">Shadow</option>
+                <option value="Non-Element">Non-Element</option>
+            </select>
+            <input type="text" name="attr_weapon_property_3" placeholder="Weapon Property (if any)" /><br />
             
-            <h5>Fourth Weapon: <input type="checkbox" name="attr_equip_weapon_4" /></h5><input type="text" name="attr_weapon_name_4" />
-            <span>Dmg: </span><span name="attr_weapon_dmg_4"></span><input type="number" name="attr_weapon_mult_4" />
+            <span class="fourd">4th:</span><input type="text" name="attr_weapon_name_4" placeholder="Weapon Name"/>
+            <span>Dmg: </span><span name="attr_weapon_dmg_4" class="fourd"></span>
             <select name="attr_weapon_astat_4" class="stype">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
                 <option value="Water">Water</option>
             </select>
-            <span> vs <span>
+            <span> x </span>
+            <input type="number" name="attr_weapon_mult_4" />
+            <span> vs </span>
             <select name="attr_weapon_dstat_4" class="stype">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
                 <option value="Water">Water</option>
             </select>
-            <input type="text" name="attr_weapon_property_4" /><br />
+            <select name="attr_weapon_element_4" class="element">   
+                <option value="Crush">Crush</option>
+                <option value="Puncture">Puncture</option>
+                <option value="Cut">Cut</option>
+                <option value="Fire">Fire</option>
+                <option value="Ice">Lightning</option>
+                <option value="Lightning">Lightning</option>
+                <option value="Air">Air</option>
+                <option value="Earth">Earth</option>
+                <option value="Water">Water</option>
+                <option value="Bio">Bio</option>
+                <option value="Light">Light</option>
+                <option value="Shadow">Shadow</option>
+                <option value="Non-Element">Non-Element</option>
+            </select>
+            <input type="text" name="attr_weapon_property_4" placeholder="Weapon Property (if any)"/><br />
             
-            <h5>Fifth Weapon: <input type="checkbox" name="attr_equip_weapon_5" /></h5><input type="text" name="attr_weapon_name_5" />
-            <span>Dmg: </span><span name="attr_weapon_dmg_5"></span><input type="number" name="attr_weapon_mult_5" />
+            <span class="fourd">5th:</span><input type="text" name="attr_weapon_name_5" placeholder="Weapon Name"/>
+            <span>Dmg: </span><span name="attr_weapon_dmg_5" class="fourd"></span>
             <select name="attr_weapon_astat_5" class="stype">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
                 <option value="Water">Water</option>
             </select>
-            <span> vs <span>
+            <span> x </span>
+            <input type="number" name="attr_weapon_mult_5" />
+            <span> vs </span>
             <select name="attr_weapon_dstat_5" class="stype">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
                 <option value="Water">Water</option>
             </select>
-            <input type="text" name="attr_weapon_property_5" /><br />
+            <select name="attr_weapon_element_5" class="element">   
+                <option value="Crush">Crush</option>
+                <option value="Puncture">Puncture</option>
+                <option value="Cut">Cut</option>
+                <option value="Fire">Fire</option>
+                <option value="Ice">Lightning</option>
+                <option value="Lightning">Lightning</option>
+                <option value="Air">Air</option>
+                <option value="Earth">Earth</option>
+                <option value="Water">Water</option>
+                <option value="Bio">Bio</option>
+                <option value="Light">Light</option>
+                <option value="Shadow">Shadow</option>
+                <option value="Non-Element">Non-Element</option>
+            </select>
+               
+            <input type="text" name="attr_weapon_property_5" placeholder="Weapon Property (if any)"/><br />
 
         </div>
         
-        <div class="accessory">
-        </div>
-        <div class="accessory">
+        <div class="col">
+            <h4>Elemental Resists</h4>
+            <label>Crush</label>
+                <select name="attr_element_crush" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select><br />
+            <label>Puncture</label>
+                <select name="attr_element_puncture" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select><br />
+            <label>Cut</label>
+                <select name="attr_element_cut" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select><br />
+            <label>Fire</label>
+                <select name="attr_element_fire" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select><br />
+            <label>Ice</label>
+                <select name="attr_element_ice" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select><br />
+            <label>Lightning</label>
+                <select name="attr_element_lightning" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select><br />
+            <label>Air</label>
+                <select name="attr_element_air" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select><br />
+            <label>Earth</label>
+                <select name="attr_element_earth" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select><br />
+            <label>Water</label>
+                <select name="attr_element_water" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select><br />
+            <label>Bio</label>
+                <select name="attr_element_bio" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select><br />
+            <label>Light</label>
+                <select name="attr_element_light" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select><br />
+            <label>Shadow</label>
+                <select name="attr_element_shadow" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select><br />
         </div>
 
-</div>
+
+        <div class="3colrow"> <!-- Beginning of Abilities & Spells -->
+            <label>Actions</label>
+            <fieldset class="repeating_actions">
+                <input type="text" name="attr_actionName" class="actionName" />
+                <select name="attr_actionSlow" class="actionSlow">
+                    <option value="0">Quick</option>
+                    <option value="1">Slow 1</option>
+                    <option value="2">Slow 2</option>
+                    <option value="3">Slow 3</option>
+                    <option value="4">Slow 4</option>
+                    <option value="5">Slow 5</option>
+                    <option value="6">Slow 6</option>
+                    <option value="7">Slow 7</option>
+                    <option value="8">Slow 8</option>
+                    <option value="9">Slow 9</option>
+                </select>
+                <input type="text" name="attr_actionMp" placeholder="0 Mp" class="numHundred" />
+                <input type="text" name="attr_actionDesc" placeholder="Ability Description" class="actionDesc" />
+                <br />
+                <label>Attack:</label>
+                <select name="attr_actionAttackStat" class="welement">
+                    <option value="Weapon">Weapon</option>
+                    <option value="Earth">Earth</option>
+                    <option value="Air">Air</option>
+                    <option value="Fire">Fire</option>
+                    <option value="Water">Water</option>
+                    <option value="None">None</option>
+                </select>
+                <span> + </span>
+                <input type="number" name="attr_actionAttackBonus" class="ref">
+                <span> vs </span>
+                <select name="attr_actionEvadeStat" class="stype">
+                    <option value="Earth">Earth</option>
+                    <option value="Air">Air</option>
+                    <option value="Fire">Fire</option>
+                    <option value="Water">Water</option>
+                    <option value="None">None</option>
+                </select>
+                <span> + </span>
+                <input type="number" name="attr_actionDifficulty" placeholder="0" class="ref">
+                <br />
+                <label>Damage:</label>
+                <select name="attr_actionDamageStat" class="welement">
+                    <option value="Weapon">Weapon</option>
+                    <option value="Earth">Earth</option>
+                    <option value="Air">Air</option>
+                    <option value="Fire">Fire</option>
+                    <option value="Water">Water</option>
+                    <option value="None">None</option>
+                </select>
+                <span> x </span>
+                <input type="number" name="attr_actionDmgMult" class="ref" />
+                <span> + </span>
+                <input type="number" name="attr_actionDmgAdd" class="ref" />
+                <span> vs </span>
+                <select name="attr_actionArmor" class="vsArmor">
+                    <option value="Armor">Armor</option>
+                    <option value="Magic Armor">Magic</option>
+                    <option value="None">None</option>
+                </select>
+                <select name="attr_actionElement" class="element">
+                    <option value="Weapon">Weapon</option>
+                    <option value="Crush">Crush</option>
+                    <option value="Puncture">Puncture</option>
+                    <option value="Cut">Cut</option>
+                    <option value="Fire">Fire</option>
+                    <option value="Ice">Lightning</option>
+                    <option value="Lightning">Lightning</option>
+                    <option value="Air">Air</option>
+                    <option value="Earth">Earth</option>
+                    <option value="Water">Water</option>
+                    <option value="Bio">Bio</option>
+                    <option value="Light">Light</option>
+                    <option value="Shadow">Shadow</option>
+                    <option value="Non-Element">Non-Element</option>
+                </select>
+            </fieldset>
+
+        </div> <!-- End of Abilities & Spells -->
+
+
+  <!-- included for reference, delete this all when done 
+        <fieldset class="repeating_skills"> 
+            <input type="text" name="attr_skillname" class="skillName" />
+            <input type="number" name="attr_skillvalue" />
+            <select name="attr_skillstat" class="stype">
+                <option value="Earth">Earth</option>
+                <option value="Air">Air</option>
+                <option value="Fire">Fire</option>
+                <option value="Water">Water</option>
+            </select>
+            <button type='roll' name='roll_testattack' value='&{template:default} {{name=@{character_name}}}{{result=[[@{skillvalue}d100k1]]}}'></button>
+        </fieldset>
+   End of reference -->     
+
+
+    <!--
+        <div class="col">
+            <h4>Status & Status Resist</h4>
+            <label>Button: R-1</label><br />
+            <label>Berserk</label>
+                <input type="number" name="attr_status_berserk_rounds" value=0 />
+                <select name="attr_status_berserk_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_berserk_sos"><br />
+            <label>Charm</label>
+                <input type="number" name="attr_status_Charm_rounds" value=0 />
+                <select name="attr_status_Charm_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_berserk_sos"><br />
+            <label>Sleep</label>
+                <input type="number" name="attr_status_Sleep_rounds" value=0 />
+                <select name="attr_status_Sleep_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_Sleep_sos"><br />
+            <label>Blink</label>
+                <input type="number" name="attr_status_Blink_rounds" value=0 />
+                <select name="attr_status_Blink_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_Blink_sos"><br />
+            <label>Vanish</label>
+                <input type="number" name="attr_status_Vanish_rounds" value=0 />
+                <select name="attr_status_Vanish_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_Vanish_sos"><br />
+            <label>Blind</label>
+                <input type="number" name="attr_status_Blind_rounds" value=0 />
+                <select name="attr_status_Blind_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_Blind_sos"><br />
+            <label>Disable</label>
+                <input type="number" name="attr_status_Disable_rounds" value=0 />
+                <select name="attr_status_Disable_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_Disable_sos"><br />
+            <label>Immobilize</label>
+                <input type="number" name="attr_status_Immobilize_rounds" value=0 />
+                <select name="attr_status_Immobilize_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_Immobilize_sos"><br />
+            <label>Mute</label>
+                <input type="number" name="attr_status_Mute_rounds" value=0 />
+                <select name="attr_status_Mute_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_Mute_sos"><br />
+            <label>Condemn</label>
+                <input type="number" name="attr_status_Condemn_rounds" value=0 />
+                <select name="attr_status_Condemn_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_Condemn_sos"><br />
+            <label>Death</label>
+                <input type="number" name="attr_status_Death_rounds" value=0 />
+                <select name="attr_status_Death_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_Death_sos"><br />
+            <label>Gravity</label>
+                <input type="number" name="attr_status_Gravity_rounds" value=0 />
+                <select name="attr_status_Gravity_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_Gravity_sos"><br />
+            <label>Berserk</label>
+                <input type="number" name="attr_status_berserk_rounds" value=0 />
+                <select name="attr_status_berserk_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_berserk_sos"><br />
+            <label>Berserk</label>
+                <input type="number" name="attr_status_berserk_rounds" value=0 />
+                <select name="attr_status_berserk_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_berserk_sos"><br />
+            <label>Berserk</label>
+                <input type="number" name="attr_status_berserk_rounds" value=0 />
+                <select name="attr_status_berserk_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_berserk_sos"><br />
+            <label>Berserk</label>
+                <input type="number" name="attr_status_berserk_rounds" value=0 />
+                <select name="attr_status_berserk_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_berserk_sos"><br />
+            <label>Berserk</label>
+                <input type="number" name="attr_status_berserk_rounds" value=0 />
+                <select name="attr_status_berserk_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_berserk_sos"><br />
+            <label>Berserk</label>
+                <input type="number" name="attr_status_berserk_rounds" value=0 />
+                <select name="attr_status_berserk_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_berserk_sos"><br />
+            <label>Berserk</label>
+                <input type="number" name="attr_status_berserk_rounds" value=0 />
+                <select name="attr_status_berserk_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_berserk_sos"><br />
+            <label>Berserk</label>
+                <input type="number" name="attr_status_berserk_rounds" value=0 />
+                <select name="attr_status_berserk_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_berserk_sos"><br />
+            <label>Berserk</label>
+                <input type="number" name="attr_status_berserk_rounds" value=0 />
+                <select name="attr_status_berserk_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_berserk_sos"><br />
+            <label>Berserk</label>
+                <input type="number" name="attr_status_berserk_rounds" value=0 />
+                <select name="attr_status_berserk_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_berserk_sos"><br />
+            <label>Berserk</label>
+                <input type="number" name="attr_status_berserk_rounds" value=0 />
+                <select name="attr_status_berserk_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_berserk_sos"><br />
+            <label>Berserk</label>
+                <input type="number" name="attr_status_berserk_rounds" value=0 />
+                <select name="attr_status_berserk_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_berserk_sos"><br />
+            <label>Berserk</label>
+                <input type="number" name="attr_status_berserk_rounds" value=0 />
+                <select name="attr_status_berserk_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_berserk_sos"><br />
+            <label>Berserk</label>
+                <input type="number" name="attr_status_berserk_rounds" value=0 />
+                <select name="attr_status_berserk_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_berserk_sos"><br />
+            <label>Berserk</label>
+                <input type="number" name="attr_status_berserk_rounds" value=0 />
+                <select name="attr_status_berserk_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_berserk_sos"><br />
+            <label>Berserk</label>
+                <input type="number" name="attr_status_berserk_rounds" value=0 />
+                <select name="attr_status_berserk_resist" class="status">
+                    <option value="0">Normal</option>
+                    <option value="Immune">Immune</option>
+                    <option value="100">Resist +100</option>
+                    <option value="50">Resist +50</option>
+                    <option value="25">Resist +25</option>
+                    <option value="-25">Weak -25</option>
+                    <option value="-50">Weak -50</option>
+                    <option value="-100">Weak -100</option>
+                </select>
+                <span>SoS:</span>
+                <input type="checkbox" name="attr_status_berserk_sos"><br />
+        </div>
+        -->
+
+    </div>
 
 <!-- Sheet Workers -->
 <script type="text/worker">
@@ -322,9 +1053,21 @@ function updateLevel()
 
 function updateHp_Max()
 {
-    getAttrs (["Earth", "Level", "hp_mult", "hp_perc", "hp_bonus"], function(values) 
+    getAttrs (["Earth", "Level", "hp_mult", "hp_perc", "hp_bonus", "hpMaxEarthFire"], function(values) 
     {
-        setAttrs({hp_max: Math.floor( parseInt(values.Earth) + parseInt(values.hp_bonus) + ( parseInt(values.Level) * parseInt(values.hp_mult) * (1+(parseInt(values.hp_perc)/100) )))})
+        var hp = 0;
+        if(values.hpMaxEarthFire != 0)
+        {
+            hp = Math.max(parseInt(values.Earth),parseInt(values.Fire));
+        }
+        else
+        {
+            hp = parseInt(values.Earth);
+        }
+        hp = hp + parseInt(values.hp_bonus);
+        hp = hp + (parseInt(values.Level) * parseInt(values.hp_mult));
+        hp = Math.floor(hp * (1 + parseInt(values.hp_perc)/100));
+        setAttrs({hp_max: hp});
     });
 
 }
@@ -333,17 +1076,24 @@ function updateMp_Max()
 {
     getAttrs (["Water", "Level", "mp_mult", "mp_perc", "mp_bonus"], function(values) 
     {
-        setAttrs({mp_max: Math.floor( parseInt(values.Water) + parseInt(values.mp_bonus) + ( parseInt(values.Level) * parseInt(values.mp_mult) * (1+(parseInt(values.mp_perc)/100) )))})
+        var mp = 0;
+        
+        mp = parseInt(values.Water);
+        
+        mp = mp + parseInt(values.mp_bonus);
+        mp = mp + (parseInt(values.Level) * parseInt(values.mp_mult));
+        mp = Math.floor(mp * (1 + parseInt(values.mp_perc)/100));
+        setAttrs({mp_max: mp});
     });
 }
 /*  turned off for testing purposes. */
 function updateEquippedWeapon(equipped)
 {
-    var one = 0;
-    var two = 0;
-    var three = 0;
-    var four = 0;
-    var five = 0;
+    //var one = 0;
+    //var two = 0;
+    //var three = 0;
+    //var four = 0;
+    //var five = 0;
     var name = "Error";
     var dmg = 0;
     var property = "Error";
@@ -351,65 +1101,77 @@ function updateEquippedWeapon(equipped)
     switch(equipped)
     {
         case 1:
-            one = "on";
-            getAttrs(["weapon_name_1","weapon_dmg_1","weapon_property_1"], function(values)
+            //one = "on";
+            getAttrs(["weapon_name_1","weapon_dmg_1","weapon_property_1","weapon_element_1"], function(values)
             {
 
-                setAttrs({weapon_dmg: values.weapon_dmg_1});
-                setAttrs({weapon_name: values.weapon_name_1});
-                setAttrs({weapon_property: value.weapon_property_1});
-                //setAttrs({weapon_name: "BULLSHIT"});
-                setAttrs({weapon_equipped: 1});
+                setAttrs({weap_dmg: values.weapon_dmg_1});
+                setAttrs({weap_name: values.weapon_name_1});
+                setAttrs({weap_property: values.weapon_property_1});
+                setAttrs({weap_element: values.weapon_element_1});
+                //setAttrs({weapon_equipped: 1});
             });
             break;
         case 2:
-            two = "on";
-            getAttrs(["weapon_name_2","weapon_dmg_2","weapon_property_2"], function(values)
+            //two = "on";
+            getAttrs(["weapon_name_2","weapon_dmg_2","weapon_property_2","weapon_element_2"], function(values)
             {
-                setAttrs({weapon_dmg: values.weapon_dmg_2});
-                setAttrs({weapon_name: values.weapon_name_2});
-                setAttrs({weapon_property: value.weapon_property_2});
-                //setAttrs({weapon_name: "BULLSHIT ASS WIPE"});
-                setAttrs({weapon_equipped: 2});
+                setAttrs({weap_dmg: values.weapon_dmg_2});
+                setAttrs({weap_name: values.weapon_name_2});
+                setAttrs({weap_property: values.weapon_property_2});
+                setAttrs({weap_element: values.weapon_element_2});
+                //setAttrs({weapon_equipped: 2});
             });
             break;
         case 3:
-            three = "on";
-            getAttrs(["weapon_name_3","weapon_dmg_3","weapon_property_3"], function(values)
+            //three = "on";
+            getAttrs(["weapon_name_3","weapon_dmg_3","weapon_property_3","weapon_element_3"], function(values)
             {
-                setAttrs({weapon_dmg: values.weapon_dmg_3});
-                setAttrs({weapon_name: values.weapon_name_3});
-                setAttrs({weapon_property: value.weapon_property_3});
-                setAttrs({weapon_equipped: 3});
+                setAttrs({weap_dmg: values.weapon_dmg_3});
+                setAttrs({weap_name: values.weapon_name_3});
+                setAttrs({weap_property: values.weapon_property_3});
+                setAttrs({weap_element: values.weapon_element_3});
+                //setAttrs({weapon_equipped: 3});
             });
             break;
         case 4:
-            four = "on";
-            getAttrs(["weapon_name_4","weapon_dmg_4","weapon_property_4"], function(values)
+            //four = "on";
+            getAttrs(["weapon_name_4","weapon_dmg_4","weapon_property_4","weapon_element_4"], function(values)
             {
-                setAttrs({weapon_dmg: values.weapon_dmg_4});
-                setAttrs({weapon_name: values.weapon_name_4});
-                setAttrs({weapon_property: value.weapon_property_4});
-                setAttrs({weapon_equipped: 4});
+                setAttrs({weap_dmg: values.weapon_dmg_4});
+                setAttrs({weap_name: values.weapon_name_4});
+                setAttrs({weap_property: values.weapon_property_4});
+                setAttrs({weap_element: values.weapon_element_4});
+                //setAttrs({weapon_equipped: 4});
             });
             break;
         case 5:
-            five = "on";
-            getAttrs(["weapon_name_5","weapon_dmg_5","weapon_property_5"], function(values)
+            //five = "on";
+            getAttrs(["weapon_name_5","weapon_dmg_5","weapon_property_5","weapon_element_5"], function(values)
             {
-                setAttrs({weapon_dmg: values.weapon_dmg_5});
-                setAttrs({weapon_name: values.weapon_name_5});
-                setAttrs({weapon_property: value.weapon_property_5});
-                setAttrs({weapon_equipped: 5});
+                setAttrs({weap_dmg: values.weapon_dmg_5});
+                setAttrs({weap_name: values.weapon_name_5});
+                setAttrs({weap_property: values.weapon_property_5});
+                setAttrs({weap_element: values.weapon_element_5});
+                //setAttrs({weapon_equipped: 5});
             });
             break;
     }
 
-    setAttrs({equip_weapon_1: one});
-    setAttrs({equip_weapon_2: two});
-    setAttrs({equip_weapon_3: three});
-    setAttrs({equip_weapon_4: four});
-    setAttrs({equip_weapon_5: five});
+    //setAttrs({equip_weapon_1: one},{quiet: true});
+    //setAttrs({equip_weapon_2: two},{quiet: true});
+    //setAttrs({equip_weapon_3: three},{quiet: true});
+    //setAttrs({equip_weapon_4: four},{quiet: true});
+    //setAttrs({equip_weapon_5: five},{quiet: true});
+}
+
+function updateEquippedWeapon1()
+{
+    getAttrs(["weapon_name_1","weapon_dmg_1","weapon_property_1"], function(values) {
+        setAttrs({weapon_name: values.weapon_name_1});
+        //setAttrs({weapon_dmg: values.weapon_dmg_1});
+        //setAttrs({weapon_property: values.weapon_property_1});
+    });
 }
 
 /* Turned off for testing purposes. Something broken herein lies */
@@ -425,7 +1187,7 @@ function updateWeaponDmg(x)
             });
             break;
         case 1:
-            getAttrs (["weapon_mult_1", "weapon_astat_1", "earth_level", "air_level", "fire_level", "water_level"], function(values)
+            getAttrs (["weapon_mult_1", "weapon_astat_1", "earth_level", "air_level", "fire_level", "water_level", "weapon_equipped"], function(values)
             {
                 var dmg = 0;
                 switch(values.weapon_astat_1)
@@ -447,10 +1209,12 @@ function updateWeaponDmg(x)
                 }
                 dmg = dmg * values.weapon_mult_1;
                 setAttrs({weapon_dmg_1: dmg});
+                if(values.weapon_equipped == 1)
+                    setAttrs({weap_dmg: dmg});
             });
             break;
         case 2:
-            getAttrs (["weapon_mult_2", "weapon_astat_2", "earth_level", "air_level", "fire_level", "water_level"], function(values)
+            getAttrs (["weapon_mult_2", "weapon_astat_2", "earth_level", "air_level", "fire_level", "water_level", "weapon_equipped"], function(values)
             {
                 var dmg = 0;
                 switch(values.weapon_astat_2)
@@ -472,10 +1236,12 @@ function updateWeaponDmg(x)
                 }
                 dmg = dmg * values.weapon_mult_2;
                 setAttrs({weapon_dmg_2: dmg});
+                if(values.weapon_equipped == 2)
+                    setAttrs({weap_dmg: dmg});
             });
             break;
         case 3:
-            getAttrs (["weapon_mult_3", "weapon_astat_3", "earth_level", "air_level", "fire_level", "water_level"], function(values)
+            getAttrs (["weapon_mult_3", "weapon_astat_3", "earth_level", "air_level", "fire_level", "water_level", "weapon_equipped"], function(values)
             {
                 var dmg = 0;
                 switch(values.weapon_astat_3)
@@ -497,10 +1263,12 @@ function updateWeaponDmg(x)
                 }
                 dmg = dmg * values.weapon_mult_3;
                 setAttrs({weapon_dmg_3: dmg});
+                if(values.weapon_equipped == 3)
+                    setAttrs({weap_dmg: dmg});
             });
             break;
         case 4:
-            getAttrs (["weapon_mult_4", "weapon_astat_4", "earth_level", "air_level", "fire_level", "water_level"], function(values)
+            getAttrs (["weapon_mult_4", "weapon_astat_4", "earth_level", "air_level", "fire_level", "water_level", "weapon_equipped"], function(values)
             {
                 var dmg = 0;
                 switch(values.weapon_astat_4)
@@ -522,10 +1290,12 @@ function updateWeaponDmg(x)
                 }
                 dmg = dmg * values.weapon_mult_4;
                 setAttrs({weapon_dmg_4: dmg});
+                if(values.weapon_equipped == 4)
+                    setAttrs({weap_dmg: dmg});
             });
             break;
         case 5:
-            getAttrs (["weapon_mult_5", "weapon_astat_5", "earth_level", "air_level", "fire_level", "water_level"], function(values)
+            getAttrs (["weapon_mult_5", "weapon_astat_5", "earth_level", "air_level", "fire_level", "water_level", "weapon_equipped"], function(values)
             {
                 var dmg = 0;
                 switch(values.weapon_astat_5)
@@ -547,11 +1317,13 @@ function updateWeaponDmg(x)
                 }
                 dmg = dmg * values.weapon_mult_5;
                 setAttrs({weapon_dmg_5: dmg});
+                if(values.weapon_equipped == 5)
+                    setAttrs({weap_dmg: dmg});
             });
             break;
         default:
         /* Something broken in here */
-            getAttrs (["weapon_mult_1","weapon_mult_2","weapon_mult_3","weapon_mult_4","weapon_mult_5", "weapon_astat_1","weapon_astat_2","weapon_astat_3","weapon_astat_4","weapon_astat_5", "earth_level", "air_level", "fire_level", "water_level"], function(values)
+            getAttrs (["weapon_mult_1","weapon_mult_2","weapon_mult_3","weapon_mult_4","weapon_mult_5", "weapon_astat_1","weapon_astat_2","weapon_astat_3","weapon_astat_4","weapon_astat_5", "earth_level", "air_level", "fire_level", "water_level", "weapon_equipped"], function(values)
             {
                 var dmg_1 = 0;
                 var dmg_2 = 0;
@@ -573,7 +1345,7 @@ function updateWeaponDmg(x)
                         dmg_1 = values.water_level;
                         break;
                     default:
-                        dmg = -1;
+                        dmg_1 = -1;
                 }
                 switch(values.weapon_astat_2)
                 {
@@ -590,7 +1362,7 @@ function updateWeaponDmg(x)
                         dmg_2 = values.water_level;
                         break;
                     default:
-                        dmg = -1;
+                        dmg_2 = -1;
                 }
                 switch(values.weapon_astat_3)
                 {
@@ -607,7 +1379,7 @@ function updateWeaponDmg(x)
                         dmg_3 = values.water_level;
                         break;
                     default:
-                        dmg = -1;
+                        dmg_3 = -1;
                 }
                 switch(values.weapon_astat_4)
                 {
@@ -624,7 +1396,7 @@ function updateWeaponDmg(x)
                         dmg_4 = values.water_level;
                         break;
                     default:
-                        dmg = -1;
+                        dmg_4 = -1;
                 }
                 switch(values.weapon_astat_5)
                 {
@@ -641,7 +1413,7 @@ function updateWeaponDmg(x)
                         dmg_5 = values.water_level;
                         break;
                     default:
-                        dmg = -1;
+                        dmg_5 = -1;
                 }
 
 
@@ -657,6 +1429,24 @@ function updateWeaponDmg(x)
                 setAttrs({weapon_dmg_3: dmg_3});
                 setAttrs({weapon_dmg_4: dmg_4});
                 setAttrs({weapon_dmg_5: dmg_5});
+                switch(values.weapon_equipped)
+                {
+                    case 1:
+                        setAttrs({weap_dmg: dmg_1});
+                        break;
+                    case 2:
+                        setAttrs({weap_dmg: dmg_2});
+                        break;
+                    case 3:
+                        setAttrs({weap_dmg: dmg_3});
+                        break;
+                    case 4:
+                        setAttrs({weap_dmg: dmg_4});
+                        break;
+                    case 5:
+                        setAttrs({weap_dmg: dmg_5});
+                        break;
+                }
             });
             
             //break;
@@ -878,6 +1668,64 @@ function updateSpent_Xp()
 
 }
 
+function updateArmor()
+{
+
+    getAttrs(["armor_arm","armor_marm","armstat","marmstat","earth_level","air_level","water_level","fire_level"], function(values){
+        var armstat = 0;
+        var marmstat = 0;
+        var arm = 0;
+        var marm = 0;
+        if( (values.armstat || values.marmstat) != "None")
+        {
+            switch(values.armstat)
+            {
+                case "Earth":
+                    armstat = values.earth_level;
+                    break;
+                case "Air":
+                    armstat = values.air_level;
+                    break;
+                case "Fire":
+                    armstat = values.fire_level;
+                    break;
+                case "Water":
+                    armstat = values.water_level;
+                    break;
+                default:
+                    armstat = 0;
+            }
+            switch(values.marmstat)
+            {
+                case "Earth":
+                    marmstat = values.earth_level;
+                    break;
+                case "Air":
+                    marmstat = values.air_level;
+                    break;
+                case "Fire":
+                    marmstat = values.fire_level;
+                    break;
+                case "Water":
+                    marmstat = values.water_level;
+                    break;
+                default:
+                    marmstat = 0;
+            }
+            armstat = parseInt(armstat);
+            marmstat = parseInt(marmstat);
+        }
+        arm = parseInt(values.armor_arm) + armstat;
+        marm = parseInt(values.armor_marm) + marmstat;
+        setAttrs({armor: arm});
+        setAttrs({marmor: marm});
+    });
+}
+
+function updateMArmor()
+{
+
+}
 
 
 on("change:earth", function(eventInfo) 
@@ -915,27 +1763,28 @@ on("change:earth_level", function()
 {
     updateLevel();
     updateWeaponDmg(6);
+    updateArmor();
 });
 
 on("change:air_level", function() 
 {
     updateLevel();
     updateWeaponDmg(6);
-
+    updateArmor();
 });
 
 on("change:fire_level", function() 
 {
     updateLevel();
     updateWeaponDmg(6);
-
+    updateArmor();
 });
 
 on("change:water_level", function() 
 {
     updateLevel();
     updateWeaponDmg(6);
-
+    updateArmor();
 });
  
 
@@ -944,6 +1793,14 @@ on("change:hp_bonus", function () {updateHp_Max()} );
 on("change:hp_mult", function () {updateHp_Max()} );
 
 on("change:hp_perc", function () {updateHp_Max()} );
+
+on("change:mp_bonus", function () {updateMp_Max()} );
+
+on("change:mp_mult", function () {updateMp_Max()} );
+
+on("change:mp_perc", function () {updateMp_Max()} );
+
+
 
 on("change:weapon_mult_1", function () 
 { 
@@ -995,30 +1852,26 @@ on("change:weapon_astat_5", function ()
     updateWeaponDmg(5);
 });
 
-on("change:equip_weapon_1", function (eventInfo) 
+on("change:weapon_equipped", function (eventInfo)
 {
-    if(eventInfo.sourceType=="player")
-      updateEquippedWeapon(1);
+    
+    updateEquippedWeapon(parseInt(eventInfo.newValue));
+    
 });
 
-on("change:equip_weapon_2", function (eventInfo) 
-{
-    if(eventInfo.sourceType=="player")
-      updateEquippedWeapon(2);
+on("change:armor_arm", function(){
+    updateArmor();
 });
-on("change:equip_weapon_3", function (eventInfo) 
-{
-    if(eventInfo.sourceType=="player")
-      updateEquippedWeapon(3);
+
+on("change:armor_marm", function (){
+    updateArmor();
 });
-on("change:equip_weapon_4", function (eventInfo) 
-{
-    if(eventInfo.sourceType=="player")
-      updateEquippedWeapon(4);
+
+on("change:armstat", function (){
+    updateArmor();
 });
-on("change:equip_weapon_5", function (eventInfo) 
-{
-    if(eventInfo.sourceType=="player")
-      updateEquippedWeapon(5);
+
+on("change:marmstat", function (){
+    updateArmor();
 });
 </script>
