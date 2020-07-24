@@ -1,11 +1,350 @@
 /* Set the min-width so that when the window is resized the look will stay consistant */
 
 .charsheet {
-	background-color: #ddd;
+	
+	/* background-color: #EEEEEE; */
 	min-width: 800px;
+	min-height: 1200px;
+}
+
+
+
+div.sheet-main {
+	display: grid;
+	grid-template-columns: repeat(39,20px [allCol]);
+	grid-template-rows: repeat(40, 20px [allRow]) [flexRow] auto [postFlex] 20px;
+
+}
+
+div.sheet-watermark {
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	opacity: .1;
+	z-index: -1;
 }
 
 /* Universal styling applied to all elements of these types */
+
+div.sheet-nameContainer {
+	grid-column-start: allCol 1;
+	grid-column-end: allCol 19;
+	grid-row-start: allRow 1;
+	grid-row-end: allRow 5;
+}
+
+div.sheet-jobContainer {
+	grid-column-start: allCol 1;
+	grid-column-end: allCol 19;
+	grid-row-start: allRow 6;
+	grid-row-end: allRow 8;
+}
+
+div.sheet-traitContainer {
+	grid-column-start: allCol 20;
+	grid-column-end: allCol 40;
+	grid-row-start: allRow 1;
+	grid-row-end: allRow 5;
+}
+
+div.sheet-xpContainer {
+	grid-column-start: allCol 1;
+	grid-column-end: allCol 19;
+	grid-row-start: allRow 9;
+	grid-row-end: allRow 11;
+
+	
+}
+
+
+
+div.sheet-quirkContainer {
+	grid-column-start: allCol 20;
+	grid-column-end: allCol 40;
+	grid-row-start: allRow 6;
+	grid-row-end: allRow 11;
+}
+
+div.sheet-attributeContainer {
+	grid-column-start: allCol 1;
+	grid-column-end: allCol 14;
+	grid-row-start: allRow 12;
+	grid-row-end: allRow 24;
+}
+
+div.sheet-hipContainer {
+	grid-column-start: allCol 15;
+	grid-column-end: allCol 26;
+	grid-row-start: allRow 12;
+	grid-row-end: allRow 16;
+}
+
+div.sheet-armorContain {
+	grid-column-start: allCol 15;
+	grid-column-end: allCol 20;
+	grid-row-start: allRow 17;
+	grid-row-end: allRow 20;
+}
+
+div.sheet-magicarmorContain {
+	grid-column-start: allCol 21;
+	grid-column-end: allCol 26;
+	grid-row-start: allRow 17;
+	grid-row-end: allRow 20;
+}
+
+div.sheet-initContain {
+	grid-column-start: allCol 15;
+	grid-column-end: allCol 26;
+	grid-row-start: allRow 21;
+	grid-row-end: allRow 24;
+}
+
+div.sheet-resistContain {
+	grid-column-start: allCol 27;
+	grid-column-end: allCol 39;
+	grid-row-start: allRow 12;
+	grid-row-end: allRow 22;
+
+	display: grid;
+
+	grid-template-columns: 1fr 1fr;
+
+	grid-template-areas:
+	"firstResist secondResist";
+}
+
+div.sheet-firstResist {
+	width: 132px;
+}
+
+div.sheet-secondResist {
+	width: 132px;
+}
+
+div.sheet-eweaponContain {
+	grid-column-start: allCol 1;
+	grid-column-end: allCol 24;
+	grid-row-start: allRow 25;
+	grid-row-end: allRow 27;
+}
+
+div.sheet-skillContain {
+	grid-column-start: allCol 1;
+	grid-column-end: allCol 39;
+	grid-row-start: allRow 28;
+	grid-row-end: flexRow;
+}
+
+div.sheet-skillContain2 {
+	min-height: 200px;
+	width: 260px;
+}
+
+
+
+/*
+div.sheet-weaponContain {
+	grid-column-start: allCol 1;
+	grid-column-end: allCol 39;
+	grid-row-start: postFlex;
+	grid-row-end: allRow 50;
+}
+*/
+/*
+div.sheet-abilityContain {
+	grid-column-start: allCol 1;
+	grid-column-end: allCol 39;
+	grid-row-start: allRow 51;
+}
+*/
+div.sheet-graphicContain {
+	grid-column-start: allCol 15;
+	grid-column-end: allCol 24;
+	grid-row-start: allRow 28;
+	grid-row-end: allRow 39;
+}
+
+div.sheet-earmorBlock {
+	grid-column-start: allCol 25;
+	grid-column-end: allCol 39;
+	grid-row-start: allRow 25;
+	grid-row-end: allRow 26;
+}
+
+span.sheet-earmorBlockeArmor {
+	display: inline-block;
+	width: 170px;
+	font-size: 8px;
+}
+
+span.sheet-earmorblockP {
+	display: inline-block;
+	width: 50px;
+	font-size: 8px;
+}
+
+div.sheet-earmorContain {
+	grid-column-start: allCol 25;
+	grid-column-end: allCol 39;
+	grid-row-start: allRow 26;
+	grid-row-end: allRow 29;
+}
+
+input.sheet-armProp {
+	width: 263px;
+}
+
+div.sheet-acc1Contain {
+	grid-column-start: allCol 25;
+	grid-column-end: allCol 39;
+	grid-row-start: allRow 30;
+	grid-row-end: allRow 33;
+}
+
+div.sheet-acc2Contain {
+	grid-column-start: allCol 25;
+	grid-column-end: allCol 39;
+	grid-row-start: allRow 34;
+	grid-row-end: allRow 37;
+}
+
+input[type=number].sheet-statValue {
+	display: inline-block;
+	width: 58px;
+	height: 58px;
+	text-align: center;
+}
+
+input.sheet-weaponName {
+	width: 100px;
+}
+
+
+
+span.sheet-XPTest {
+	display: inline-block;
+	width: 35px;
+	height: 20px;
+}
+
+textarea.sheet-quirkText {
+	resize: none;
+	width: 378px;
+	height: 36px;
+}
+
+span.sheet-empty40 {
+	display: inline-block;
+	width: 35px;
+}
+
+span.sheet-XPText {
+	display: inline-block;
+	width: 75px;
+	text-align: center;
+}
+
+input.sheet-traitText {
+	width: 378px;
+}
+
+input[type=number].sheet-xpNum {
+	width: 75px;
+	text-align: center;
+}
+
+input[type=number].sheet-currHp {
+	width: 50px;
+	height: 40px;
+	font-size: 18px;
+	text-align: right;
+}
+
+input[type=number].sheet-hpPerc {
+	vertical-align: top;
+	width: 35px;
+}
+
+span.sheet-hpText {
+	display: inline-block;
+	width: 20px;
+}
+
+span.sheet-maxHp {
+	display: inline-block;
+	font-size: 18px;
+	width: 40px;
+}
+
+span.sheet-statLevel {
+	display: inline-block;
+	width: 58px;
+	height: 58px;
+	text-align: center;
+	border: 1px dotted black;
+	vertical-align: top;
+	line-height: 58px;
+	font-size: 24px;
+}
+
+span.sheet-nextStat {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	text-align: center;
+	border: 1px dotted black;
+	vertical-align: top;
+	line-height: 20px;
+}
+
+input.sheet-skillName {
+	width: 115px;
+	font-size: 11px;
+	height: 22px;
+	vertical-align: center;
+}
+
+span.sheet-resistLabel {
+	display: inline-block;
+	width: 50px;
+	font-size: 11px;
+	height: 20px;
+	vertical-align: center;
+}
+
+select.sheet-resist {
+	width: 65px;
+	font-size: 9px;
+	height: 22px;
+	vertical-align: center;
+}
+
+select.sheet-armorDropdown {
+	width: 58px;
+	font-size: 8px;
+	vertical-align: top;
+}
+
+input[type=number].sheet-skillNum {
+	width: 35px;
+	font-size: 9px;
+	height: 22px;
+	vertical-align: center;
+}
+
+span.sheet-armorSpan {
+	display: inline-block;
+	width: 33px;
+	font-size: 20px;
+}
+
+select.sheet-skillDropdown {
+	width: 60px;
+	font-size: 9px;
+	height: 22px;
+	vertical-align: center;
+}
 
 h2 {
 	font-size: 2em;
@@ -15,24 +354,39 @@ h2 {
 
 label {
 	display: inline-block;
-	width: 120px;
+	width: 90px;
+	font-size: 16px;
 }
 
 input {
 	display: inline-block;
 	width: 165px;
+	box-shadow: 4px 4px 2px 1px rgba(0, 0, 255, .2);
 }
 
+select {
+	box-shadow: 4px 4px 2px 1px rgba(0, 0, 255, .2);
+}
+/*
 img {
 	max-height: 100px;
 }
-
+*/
 textarea {
 	resize: vertical;
 }
 
-/* -----Hides up/down buttons on numberfields that don't need them ---*/
 
+
+/* -----Hides up/down buttons on numberfields that don't need them ---*/
+input[type=number].sheet-currHp::-webkit-inner-spin-button,
+input[type=number].sheet-currHp::-webkit-outer-spin-button,
+input[type=number].sheet-hpPerc::-webkit-inner-spin-button,
+input[type=number].sheet-hpPerc::-webkit-inner-spin-button,
+input[type=number].sheet-xpNum::-webkit-inner-spin-button,
+input[type=number].sheet-xpNum::-webkit-outer-spin-button,
+input[type=number].sheet-longNum::-webkit-inner-spin-button,
+input[type=number].sheet-longNum::-webkit-outer-spin-button,
 input[type=number].sheet-ref::-webkit-inner-spin-button,
 input[type=number].sheet-ref::-webkit-outer-spin-button,
 input[type=number].sheet-txtfield::-webkit-inner-spin-button,
@@ -40,6 +394,10 @@ input[type=number].sheet-txtfield::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+input[type=number].sheet-xpNum,
+input[type=number].sheet-hpPerc,
+input[type=number].sheet-currHp,
+input[type=number].sheet-longNum,
 input[type=number].sheet-ref,
 input[type=number].sheet-txtfield {
   -moz-appearance: textfield;
@@ -62,6 +420,10 @@ input.sheet-numTen {
 	width: 50px;
 }
 
+input.sheet-longNum {
+	width: 90px;
+}
+
 input.sheet-actionDesc {
 	width: 400px;
 }
@@ -80,8 +442,11 @@ span.sheet-eightd {
 	width: 70px;
 }
 
-input.sheet-skillName {
+
+
+select.sheet-jobSelect {
 	width: 120px;
+	height: 35px;
 }
 
 select.sheet-dtype {
@@ -89,10 +454,6 @@ select.sheet-dtype {
     width: 60px;
 }
 
-select.sheet-resist {
-	vertical-align: top;
-	width: 100px;
-}
 
 select.sheet-mtype {
     vertical-align: top;
@@ -153,8 +514,8 @@ span.sheet-dee {
 	margin-left: 35%;
 	margin-right: 15%;
 }
-
+/*
 .sheet-stats input {
 	margin-right: 5px;
 	width: 60px;
-}
+} */

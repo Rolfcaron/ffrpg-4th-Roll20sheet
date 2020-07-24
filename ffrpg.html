@@ -1,4 +1,6 @@
-<div class="2colrow">
+<div class="main">
+
+
         <input name="attr_earth_level" type="hidden">
         <input name="attr_air_level" type="hidden">
         <input name="attr_fire_level" type="hidden">
@@ -30,26 +32,18 @@
         <input name="attr_hpMaxEarthFire" type="hidden" value = "0">
 
 
-    
-    <div class="col">
-    	<label>Name:</label><input type="text" name="attr_character_name"/>
-		<label>Level:</label><span name="attr_level"></span><br />
-		<label>Total XP:</label><input type="number" name="attr_xp" /><br />
-        <label>Spent XP:</label><span name="attr_spent_xp"></span>
-        <label>Current XP:</label><span name="attr_current_xp"></span><br />
-        <h5>Earth: <span name="attr_next_earth"></span></h5>
-        <h5>Air: <span name="attr_next_air"></span></h5>
-        <h5>Fire: <span name="attr_next_fire"></span></h5>
-        <h5>Water: <span name="attr_next_water"></span></h5>
-	</div>
+    <div class="watermark">
+        <img src="https://raw.githubusercontent.com/Rolfcaron/ffrpg-4th-Roll20sheet/master/final-fantasy-vi-mog.png" />
+    </div>
 
-<!--	<div class="col">
-		 <img src="https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/kitchensink/logo.png" />
-	</div>
--->
-	<div class="col">
-		<label>Job:</label>
-        <select name="attr_job" class="ttype">
+
+    <div class="nameContainer">
+    	<input type="text" name="attr_character_name" placeholder="Short Character Name"/><br />
+        <input type="text" name="attr_character_fullName" placeholder="Full Character Name"/>
+    </div>
+
+    <div class="jobContainer">
+        <select name="attr_job" class="jobSelect">
                 <option value="Adept">Adept</option>
                 <option value="Archer">Archer</option>
                 <option value="Artist">Artist</option>
@@ -63,9 +57,7 @@
                 <option value="Time Mage">Time Mage</option>
                 <option value="White Mage">White Mage</option>
         </select>
-        <br />
-		<label>Secondary:</label>
-        <select name="attr_secondary" class="ttype">
+        <select name="attr_secondary" class="jobSelect">
                 <option value="Alchemist">Alchemist</option>
                 <option value="Berserker">Berserker</option>
                 <option value="Defender">Defender</option>
@@ -76,73 +68,76 @@
                 <option value="Squire">Squire</option>
                 <option value="Wizard">Wizard</option>
         </select>
+    <!--
+		<span>Level: </span><span name="attr_level"></span><br />
+		<span>Total XP: </span><input type="number" name="attr_xp" class="longNum" /><br />
+        <label>Spent XP:</label><span name="attr_spent_xp"></span>
+        <label>Current XP:</label><span name="attr_current_xp"></span><br />
+        <h5>Earth: <span name="attr_next_earth"></span></h5>
+        <h5>Air: <span name="attr_next_air"></span></h5>
+        <h5>Fire: <span name="attr_next_fire"></span></h5>
+        <h5>Water: <span name="attr_next_water"></span></h5>
+    -->
 	</div>
-    <div>
-        <h4>Traits</h4>
-            <input type="text" name="attr_trait1" /><br />
-            <input type="text" name="attr_trait2" /><br />
-            <input type="text" name="attr_trait3" />
-        <h4>Quirks</h4>
-            <input type="text" name="attr_quirk1" /><br />
-            <input type="text" name="attr_quirk2" /><br />
-            <input type="text" name="attr_quirk3" />
+
+    <div class="traitContainer">
+        <input type="text" name="attr_trait1" placeholder="Trait 1" class="traitText" /><br />
+        <input type="text" name="attr_trait2" placeholder="Trait 2" class="traitText" /><br />
+        <input type="text" name="attr_trait3" placeholder="Trait 3" class="traitText" />
     </div>
 
-</div>
+    <div class="quirkContainer">
+     <!--   <textarea name="attr_quirk1" placeholder="Quirk 1" class="quirkText"></textarea><br />
+        <textarea name="attr_quirk2" placeholder="Quirk 2" class="quirkText"></textarea><br />
+        <textarea name="attr_quirk3" placeholder="Quirk 3" class="quirkText"></textarea> -->
+        <input type="text" name="attr_quirk1" placeholder="Quirk 1" class="traitText"/><br />
+        <input type="text" name="attr_quirk2" placeholder="Quirk 2" class="traitText"/><br />
+        <input type="text" name="attr_quirk3" placeholder="Quirk 3" class="traitText"/>
+    </div>
 
-<hr/>
-<div class="2colrow">
-	<div class="col">
-		<h2>Attributes</h2>
+    <div class="xpContainer">
+
+            <span class="XPText">Earned Xp:</span>
+            <span class="XPText">Spent Xp:</span>
+            <span class="XPText">Extra Xp:</span>
+            <span class="XPText">Gil:</span><br />
+            <input type="number" name="attr_xp" class="xpNum" />
+            <span name="attr_spent_xp" class="XPText"></span>
+            <span name="attr_current_xp" class="XPText"></span>
+            <input type="number" name="attr_gil" class="xpNum" />
+    </div>
+
+    <div class="attributeContainer">
+        <label>Earth </label>
+        <input type="number" name="attr_earth" class="statValue">
+        <span name="attr_earth_level" class="statLevel"></span>
+        <span name="attr_next_earth" class="nextStat"></span>
+        <br />
         
-
-
-		<label>Earth </label><input type="number" name='attr_earth' class='sheet-short'>
-        <button type='roll' name='roll_testattack' value='&{template:default} {{name=@{character_name}}} {{result=[[1d100 + @{Earth}]]}}'></button>
-        <span name="attr_earth_level"></span>
+        <label>Air </label>
+        <input type="number" name="attr_air" class="statValue">
+        <span name="attr_air_level" class="statLevel"></span>
+        <span name="attr_next_air" class="nextStat"></span>
         <br />
-		<label>Air </label><input type="number" name='attr_air' class='sheet-short'>
-        <button type='roll' name='roll_testattack' value='&{template:default} {{name=@{character_name}}} {{result=[[1d100 + @{Air}]]}}'></button>
-        <span name="attr_air_level"></span>
-        <br />
-		<label>Fire </label><input type="number" name='attr_fire' class='sheet-short'>
-        <button type='roll' name='roll_testattack' value='&{template:default} {{name=@{character_name}}} {{result=[[1d100 + @{Fire}]]}}'></button>
-        <span name="attr_fire_level"></span>
-        <br />
-		<label>Water </label><input type="number" name='attr_water' class='sheet-short'>
-        <button type='roll' name='roll_testattack' value='&{template:default} {{name=@{character_name}}} {{result=[[1d100 + @{Water}]]}}'></button>
-        <span name="attr_water_level"></span>
-        <hr />
-
-        <h2>Initiative</h2>
-            <span>Modifier to each: </span>
-            <input type="number" name="attr_modInit" placeholder="0">
-            <button type="roll" name="roll_initiative" value='&{template:default} {{name=@{character_name}}} {{result=[[1d10+@{modInit} &{tracker:+}]]}}'></button>
-            <span>Roll this once per initiative die you have (default 3)</span>
-        <h2>Skills</h2>
         
-        <fieldset class="repeating_skills"> 
-            <input type="text" name="attr_skillname" class="skillName" />
-            <input type="number" name="attr_skillvalue" />
-            <select name="attr_skillstat" class="stype">
-                <option value="Earth">Earth</option>
-                <option value="Air">Air</option>
-                <option value="Fire">Fire</option>
-                <option value="Water">Water</option>
-            </select>
-            <button type='roll' name='roll_testattack' value='&{template:default} {{name=@{character_name}}}{{result=[[@{skillvalue}d100k1]]}}'></button>
-        </fieldset>
+        <label>Fire </label>
+        <input type="number" name="attr_fire" class="statValue">
+        <span name="attr_fire_level" class="statLevel"></span>
+        <span name="attr_next_fire" class="nextStat"></span>
+        <br />
+        
+        <label>Water </label>
+        <input type="number" name="attr_water" class="statValue">
+        <span name="attr_water_level" class="statLevel"></span>
+        <span name="attr_next_water" class="nextStat"></span>
+    </div>
 
-
-
-	</div>
-
-	<div class="col">
-		<h2>Derived Stats</h2>
-        <div class="stats">
-            <h3>Base</h3><h3>Max</h3><h3>Mult</h3>
-            <label>Hp</label><input type="text" name="attr_hp" /><span name="attr_hp_max"></span>
-            <select name="attr_hp_mult" class="mtype">
+    <div class="hipContainer">
+        <span class="hpText">HP</span>
+        <input type="number" name="attr_hp" class="currHp" />
+        <span>/</span>
+        <span name="attr_hp_max" class="maxHp"></span>
+        <select name="attr_hp_mult" class="mtype">
                 <option value="1">1x</option>
                 <option value="2">2x</option>
                 <option value="3">3x</option>
@@ -154,14 +149,14 @@
                 <option value="9">9x</option>
                 <option value="10">10x</option>
                 <option value="11">11x</option>
-            </select>
-            <br />
-            <span>Bonus & % HP</span>
-            <input type="text" name="attr_hp_bonus" />
-            <input type="text" name="attr_hp_perc" />
-            <br />
-            <label>Mp</label><input type="text" name="attr_mp" /><span name="attr_mp_max" ></span>
-            <select name="attr_mp_mult" class="mtype">
+        </select>
+        <input type="number" name="attr_hp_perc" class="hpPerc" value="0" />
+        <br />
+        <span class="hpText">MP</span>
+        <input type="number" name="attr_mp" class="currHp" />
+        <span>/</span>
+        <span name="attr_mp_max" class="maxHp"></span>
+        <select name="attr_mp_mult" class="mtype">
                 <option value="0">0x</option>
                 <option value="1">1x</option>
                 <option value="2">2x</option>
@@ -173,61 +168,145 @@
                 <option value="8">8x</option>
                 <option value="9">9x</option>
                 <option value="10">10x</option>
-                <option value="11">11x</option>
-            </select>
-            <br />
-            <span>Bonus & % MP</span>
-            <input type="text" name="attr_mp_bonus" />
-            <input type="text" name="attr_mp_perc" />
+        </select>
+        <input type="number" name="attr_mp_perc" class="hpPerc" value="0" />
+    </div>
+
+    <div class="armorContain">
+        <span>Physical Armor</span>
+        <span name="attr_armor" class="armorSpan"></span>
+        <select name="attr_armstat" class="armorDropdown">
+            <option value="None">No Stat</option>
+            <option value="Earth">Earth</option>
+            <option value="Air">Air</option>
+            <option value="Fire">Fire</option>
+            <option value="Water">Water</option>
+        </select>
+    </div>
+
+    <div class="magicarmorContain">
+        <span>Magical Armor</span>
+        <span name="attr_marmor" class="armorSpan"></span>
+        <select name="attr_marmstat" class="armorDropdown">
+            <option value="None">No Stat</option>
+            <option value="Earth">Earth</option>
+            <option value="Air">Air</option>
+            <option value="Fire">Fire</option>
+            <option value="Water">Water</option>
+        </select>
+    </div>
+
+    <div class="initContain">
+        <span>Modifier to each: </span>
+        <input type="number" name="attr_modInit" placeholder="0">
+        <button type="roll" name="roll_initiative" value='&{template:default} {{name=@{character_name}}} {{result=[[1d10+@{modInit} &{tracker:+}]]}}'></button>
+        <span>Roll this once per initiative die you have (default 3)</span>
+    </div>
+
+    <div class="resistContain">
+        <div class="firstResist">
+            <span class="resistLabel">Crush</span>
+                <select name="attr_element_crush" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select><br />
+            <span class="resistLabel">Puncture</span>
+                <select name="attr_element_puncture" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select><br />
+            <span class="resistLabel">Cut</span>
+                <select name="attr_element_cut" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select><br />
+            <span class="resistLabel">Fire</span>
+                <select name="attr_element_fire" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select><br />
+            <span class="resistLabel">Ice</span>
+                <select name="attr_element_ice" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select><br />
+            <span class="resistLabel">Lightning</span>
+                <select name="attr_element_lightning" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select>
         </div>
-        <div class="stats">
-            <label>Armor: </label>
-            <span name="attr_armor"></span>
-            <select name="attr_armstat" class="stype">
-                <option value="None">No Stat</option>
-                <option value="Earth">Earth</option>
-                <option value="Air">Air</option>
-                <option value="Fire">Fire</option>
-                <option value="Water">Water</option>
-            </select>
-            <br />
-            <label>Magic Armor: </label>
-            <span name="attr_marmor"></span>
-            <select name="attr_marmstat" class="stype">
-                <option value="None">No Stat</option>
-                <option value="Earth">Earth</option>
-                <option value="Air">Air</option>
-                <option value="Fire">Fire</option>
-                <option value="Water">Water</option>
-            </select>
+        <div class="secondResist">
+            <span class="resistLabel">Air</span>
+                <select name="attr_element_air" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select><br />
+            <span class="resistLabel">Earth</span>
+                <select name="attr_element_earth" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select><br />
+            <span class="resistLabel">Water</span>
+                <select name="attr_element_water" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select><br />
+            <span class="resistLabel">Bio</span>
+                <select name="attr_element_bio" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select><br />
+            <span class="resistLabel">Light</span>
+                <select name="attr_element_light" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select><br />
+            <span class="resistLabel">Shadow</span>
+                <select name="attr_element_shadow" class="resist">
+                    <option value="100">Normal</option>
+                    <option value="200">Weak</option>
+                    <option value="50">Resist</option>
+                    <option value="0">Immune</option>
+                    <option value="-100">Absorb</option>
+                </select>
         </div>
+    </div>
 
-
-	</div> <!-- end of col -->
-<!--
-	<div class="col">
-
-		<h2>Hindrances</h2>
-
-		<textarea name="attr_hindrances"></textarea>
-
-		<hr/>
-
-		<h2>Edges</h2>
-
-		<textarea name="attr_edges"></textarea>
-
-	</div>
--->
-
-    
-
-
-
-
-</div>
-<div class="2colrow">
-
+    <div class="eweaponContain">
         <div class="weapon">
             <h5>Equipped Weapon: </h5>
             <select name="attr_weapon_equipped" class="stype">
@@ -246,23 +325,26 @@
             
         
         </div>
-        <div class="armor">
-            <h5>Armor</h5>
-            <input type="text" name="attr_armor_name">
-            <input type="number" name="attr_armor_arm">
-            <input type="number" name="attr_armor_marm">
-            <input type="text" name="attr_armor_property">
+    </div>
+
+    <div class="skillContain">
+        <div class="skillContain2">
+            <fieldset class="repeating_skills"> 
+                <input type="text" name="attr_skillname" class="skillName" placeholder="Skill Name" />
+                <input type="number" name="attr_skillvalue" class="skillNum" />
+                <select name="attr_skillstat" class="skillDropdown">
+                    <option value="Earth">Earth</option>
+                    <option value="Air">Air</option>
+                    <option value="Fire">Fire</option>
+                    <option value="Water">Water</option>
+                </select>
+                <button type='roll' name='roll_testattack' value='&{template:default} {{name=@{character_name}}}{{result=[[@{skillvalue}d100k1]]}}'></button>
+            </fieldset>
         </div>
-        <div class="accessory">
-            <h5>Accessories</h5>
-            <input type="text" name="attr_acc1_name" /><input type="text" name="attr_acc1_property" /><br />
-            <input type="text" name="attr_acc2_name" /><input type="text" name="attr_acc2_property" />
-        </div>
-        <div class="accessory">
-        </div>
-        <div>
-            <h5>Weapons</h5>
-            <span class="fourd">1st:</span><input type="text" name="attr_weapon_name_1" placeholder="Weapon Name"/>
+
+        <div class="weaponContain">
+            <span class="fourd">1st:</span>
+            <input type="text" name="attr_weapon_name_1" placeholder="Weapon Name" class="weaponName" />
             <span>Dmg: </span><span name="attr_weapon_dmg_1" class="fourd"></span>
             <select name="attr_weapon_astat_1" class="stype">
                 <option value="Earth">Earth</option>
@@ -294,9 +376,10 @@
                 <option value="Shadow">Shadow</option>
                 <option value="Non-Element">Non-Element</option>
             </select>
-            <input type="text" name="attr_weapon_property_1" placeholder="Weapon Property (if any)"/><br />
+            <input type="text" name="attr_weapon_property_1" placeholder="Weapon Property (if any)" /><br />
 
-            <span class="fourd">2nd:</span><input type="text" name="attr_weapon_name_2" placeholder="Weapon Name"/>
+            <span class="fourd">2nd:</span>
+            <input type="text" name="attr_weapon_name_2" placeholder="Weapon Name" class="weaponName" />
             <span>Dmg: </span><span name="attr_weapon_dmg_2" class="fourd"></span>
             <select name="attr_weapon_astat_2" class="stype">
                 <option value="Earth">Earth</option>
@@ -330,7 +413,8 @@
             </select>
             <input type="text" name="attr_weapon_property_2" placeholder="Weapon Property (if any)"/><br />
             
-            <span class="fourd">3rd:</span><input type="text" name="attr_weapon_name_3" placeholder="Weapon Name"/>
+            <span class="fourd">3rd:</span>
+            <input type="text" name="attr_weapon_name_3" placeholder="Weapon Name" class="weaponName" />
             <span>Dmg: </span><span name="attr_weapon_dmg_3" class="fourd"></span>
             <select name="attr_weapon_astat_3" class="stype">
                 <option value="Earth">Earth</option>
@@ -362,9 +446,10 @@
                 <option value="Shadow">Shadow</option>
                 <option value="Non-Element">Non-Element</option>
             </select>
-            <input type="text" name="attr_weapon_property_3" placeholder="Weapon Property (if any)" /><br />
+            <input type="text" name="attr_weapon_property_3" placeholder="Weapon Property (if any)"  /><br />
             
-            <span class="fourd">4th:</span><input type="text" name="attr_weapon_name_4" placeholder="Weapon Name"/>
+            <span class="fourd">4th:</span>
+            <input type="text" name="attr_weapon_name_4" placeholder="Weapon Name" class="weaponName" />
             <span>Dmg: </span><span name="attr_weapon_dmg_4" class="fourd"></span>
             <select name="attr_weapon_astat_4" class="stype">
                 <option value="Earth">Earth</option>
@@ -396,9 +481,10 @@
                 <option value="Shadow">Shadow</option>
                 <option value="Non-Element">Non-Element</option>
             </select>
-            <input type="text" name="attr_weapon_property_4" placeholder="Weapon Property (if any)"/><br />
+            <input type="text" name="attr_weapon_property_4" placeholder="Weapon Property (if any)" /><br />
             
-            <span class="fourd">5th:</span><input type="text" name="attr_weapon_name_5" placeholder="Weapon Name"/>
+            <span class="fourd">5th:</span>
+            <input type="text" name="attr_weapon_name_5" placeholder="Weapon Name" class="weaponName" />
             <span>Dmg: </span><span name="attr_weapon_dmg_5" class="fourd"></span>
             <select name="attr_weapon_astat_5" class="stype">
                 <option value="Earth">Earth</option>
@@ -430,113 +516,156 @@
                 <option value="Shadow">Shadow</option>
                 <option value="Non-Element">Non-Element</option>
             </select>
-               
-            <input type="text" name="attr_weapon_property_5" placeholder="Weapon Property (if any)"/><br />
-
+            <input type="text" name="attr_weapon_property_5" placeholder="Weapon Property (if any)"/>
         </div>
+        <div class="abilityContain">
+            <h3>Passive Abilities</h3>
+            <fieldset class="repeating_passives">
+                <input type="text" name="attr_passiveName" class="passiveName" placeholder="Ability Name" />
+                <input type="text" name="attr_passiveDesc" class="passiveDesc" placeholder="Ability Effect" />
+            </fieldset>
+            <h3>Action Abilities</h3>
+            <fieldset class="repeating_actions">
+                <input type="text" name="attr_actionName" class="actionName" />
+                <select name="attr_actionSlow" class="actionSlow">
+                    <option value="0">Quick</option>
+                    <option value="1">Slow 1</option>
+                    <option value="2">Slow 2</option>
+                    <option value="3">Slow 3</option>
+                    <option value="4">Slow 4</option>
+                    <option value="5">Slow 5</option>
+                    <option value="6">Slow 6</option>
+                    <option value="7">Slow 7</option>
+                    <option value="8">Slow 8</option>
+                    <option value="9">Slow 9</option>
+                </select>
+                <input type="text" class="hidden" name="attr_actionHiddenDmg" />
+                <input type="text" name="attr_actionMp" placeholder="0 Mp" class="numHundred" />
+                <input type="text" name="attr_actionType" placeholder="!Attack" class="actionType" />
+                <input type="text" name="attr_actionDesc" placeholder="Ability Description" class="actionDesc" />
+                <br />
+                <label>Attack:</label>
+                <select name="attr_actionAttackStat" class="welement">
+                    <option value="Weapon">Weapon</option>
+                    <option value="Earth">Earth</option>
+                    <option value="Air">Air</option>
+                    <option value="Fire">Fire</option>
+                    <option value="Water">Water</option>
+                    <option value="None">None</option>
+                </select>
+                <span> + </span>
+                <input type="number" name="attr_actionAttackBonus" class="ref">
+                <span> vs </span>
+                <select name="attr_actionEvadeStat" class="stype">
+                    <option value="Earth">Earth</option>
+                    <option value="Air">Air</option>
+                    <option value="Fire">Fire</option>
+                    <option value="Water">Water</option>
+                    <option value="None">None</option>
+                </select>
+                <span> + </span>
+                <input type="number" name="attr_actionDifficulty" placeholder="0" class="ref">
+                <br />
+                <label>Damage:</label>
+                <select name="attr_actionDamageStat" class="welement">
+                    <option value="Weapon">Weapon</option>
+                    <option value="Earth">Earth</option>
+                    <option value="Air">Air</option>
+                    <option value="Fire">Fire</option>
+                    <option value="Water">Water</option>
+                    <option value="None">None</option>
+                </select>
+                <span> x </span>
+                <input type="number" name="attr_actionDmgMult" class="ref" />
+                <span> + </span>
+                <input type="number" name="attr_actionDmgAdd" class="ref" />
+                <span> vs </span>
+                <select name="attr_actionArmor" class="vsArmor">
+                    <option value="Armor">Armor</option>
+                    <option value="Magic Armor">Magic</option>
+                    <option value="None">None</option>
+                </select>
+                <select name="attr_actionElement" class="element">
+                    <option value="Weapon">Weapon</option>
+                    <option value="Crush">Crush</option>
+                    <option value="Puncture">Puncture</option>
+                    <option value="Cut">Cut</option>
+                    <option value="Fire">Fire</option>
+                    <option value="Ice">Lightning</option>
+                    <option value="Lightning">Lightning</option>
+                    <option value="Air">Air</option>
+                    <option value="Earth">Earth</option>
+                    <option value="Water">Water</option>
+                    <option value="Bio">Bio</option>
+                    <option value="Light">Light</option>
+                    <option value="Shadow">Shadow</option>
+                    <option value="Non-Element">Non-Element</option>
+                </select>
+            </fieldset>
+        </div>
+    </div>
+
+    <div class="earmorBlock">
+        <span class="earmorBlockeArmor">Equipped Armor</span>
+        <span class="earmorblockP">Physical</span>
+        <span class="earmorblockP">Magical</span>
+    </div>
+
+    <div class="earmorContain">
+            <input type="text" name="attr_armor_name" class="armName" placeholder="Equipped Armor Name">
+            <input type="number" name="attr_armor_arm">
+            <input type="number" name="attr_armor_marm">
+            <input type="text" name="attr_armor_property" class="armProp" placeholder="Armor property (if any)">
+    </div>
+
+    <div class="acc1Contain">
+        <input type="text" name="attr_acc1_name" placeholder="Accessory Name" />
+        <input type="text" name="attr_acc1_property" placeholder="Accessory Property" class="armProp" />
+    </div>
+
+    <div class="acc2Contain">
+        <input type="text" name="attr_acc2_name" placeholder="Accessory Name" />
+        <input type="text" name="attr_acc2_property" placeholder="Accessory Property" class="armProp" />
+    </div>
+
+    <div class="graphicContain">
+    </div>
+
+    
+</div> <!-- End of Main -->
+    
+
+
+
+<!--	<div class="col">
+		 <img src="https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/kitchensink/logo.png" />
+	</div>
+-->
+	
+
+
+<!--
+<hr/>
+<div class="2colrow">
+	
+
+	<div class="col">
+		
+
+    
+
+
+
+
+</div>
+<div class="2colrow">
+
         
-        <div class="col">
-            <h4>Elemental Resists</h4>
-            <label>Crush</label>
-                <select name="attr_element_crush" class="resist">
-                    <option value="100">Normal</option>
-                    <option value="200">Weak</option>
-                    <option value="50">Resist</option>
-                    <option value="0">Immune</option>
-                    <option value="-100">Absorb</option>
-                </select><br />
-            <label>Puncture</label>
-                <select name="attr_element_puncture" class="resist">
-                    <option value="100">Normal</option>
-                    <option value="200">Weak</option>
-                    <option value="50">Resist</option>
-                    <option value="0">Immune</option>
-                    <option value="-100">Absorb</option>
-                </select><br />
-            <label>Cut</label>
-                <select name="attr_element_cut" class="resist">
-                    <option value="100">Normal</option>
-                    <option value="200">Weak</option>
-                    <option value="50">Resist</option>
-                    <option value="0">Immune</option>
-                    <option value="-100">Absorb</option>
-                </select><br />
-            <label>Fire</label>
-                <select name="attr_element_fire" class="resist">
-                    <option value="100">Normal</option>
-                    <option value="200">Weak</option>
-                    <option value="50">Resist</option>
-                    <option value="0">Immune</option>
-                    <option value="-100">Absorb</option>
-                </select><br />
-            <label>Ice</label>
-                <select name="attr_element_ice" class="resist">
-                    <option value="100">Normal</option>
-                    <option value="200">Weak</option>
-                    <option value="50">Resist</option>
-                    <option value="0">Immune</option>
-                    <option value="-100">Absorb</option>
-                </select><br />
-            <label>Lightning</label>
-                <select name="attr_element_lightning" class="resist">
-                    <option value="100">Normal</option>
-                    <option value="200">Weak</option>
-                    <option value="50">Resist</option>
-                    <option value="0">Immune</option>
-                    <option value="-100">Absorb</option>
-                </select><br />
-            <label>Air</label>
-                <select name="attr_element_air" class="resist">
-                    <option value="100">Normal</option>
-                    <option value="200">Weak</option>
-                    <option value="50">Resist</option>
-                    <option value="0">Immune</option>
-                    <option value="-100">Absorb</option>
-                </select><br />
-            <label>Earth</label>
-                <select name="attr_element_earth" class="resist">
-                    <option value="100">Normal</option>
-                    <option value="200">Weak</option>
-                    <option value="50">Resist</option>
-                    <option value="0">Immune</option>
-                    <option value="-100">Absorb</option>
-                </select><br />
-            <label>Water</label>
-                <select name="attr_element_water" class="resist">
-                    <option value="100">Normal</option>
-                    <option value="200">Weak</option>
-                    <option value="50">Resist</option>
-                    <option value="0">Immune</option>
-                    <option value="-100">Absorb</option>
-                </select><br />
-            <label>Bio</label>
-                <select name="attr_element_bio" class="resist">
-                    <option value="100">Normal</option>
-                    <option value="200">Weak</option>
-                    <option value="50">Resist</option>
-                    <option value="0">Immune</option>
-                    <option value="-100">Absorb</option>
-                </select><br />
-            <label>Light</label>
-                <select name="attr_element_light" class="resist">
-                    <option value="100">Normal</option>
-                    <option value="200">Weak</option>
-                    <option value="50">Resist</option>
-                    <option value="0">Immune</option>
-                    <option value="-100">Absorb</option>
-                </select><br />
-            <label>Shadow</label>
-                <select name="attr_element_shadow" class="resist">
-                    <option value="100">Normal</option>
-                    <option value="200">Weak</option>
-                    <option value="50">Resist</option>
-                    <option value="0">Immune</option>
-                    <option value="-100">Absorb</option>
-                </select><br />
-        </div>
+        
 
 
-        <div class="3colrow"> <!-- Beginning of Abilities & Spells -->
+        <div class="3colrow">--> <!-- Beginning of Abilities & Spells -->
+            <!--
             <label>Actions</label>
             <fieldset class="repeating_actions">
                 <input type="text" name="attr_actionName" class="actionName" />
@@ -552,6 +681,7 @@
                     <option value="8">Slow 8</option>
                     <option value="9">Slow 9</option>
                 </select>
+                <input type="text" class="hidden" name="attr_actionHiddenDmg" />
                 <input type="text" name="attr_actionMp" placeholder="0 Mp" class="numHundred" />
                 <input type="text" name="attr_actionDesc" placeholder="Ability Description" class="actionDesc" />
                 <br />
@@ -614,22 +744,10 @@
                 </select>
             </fieldset>
 
-        </div> <!-- End of Abilities & Spells -->
+        </div> --><!-- End of Abilities & Spells -->
 
 
-  <!-- included for reference, delete this all when done 
-        <fieldset class="repeating_skills"> 
-            <input type="text" name="attr_skillname" class="skillName" />
-            <input type="number" name="attr_skillvalue" />
-            <select name="attr_skillstat" class="stype">
-                <option value="Earth">Earth</option>
-                <option value="Air">Air</option>
-                <option value="Fire">Fire</option>
-                <option value="Water">Water</option>
-            </select>
-            <button type='roll' name='roll_testattack' value='&{template:default} {{name=@{character_name}}}{{result=[[@{skillvalue}d100k1]]}}'></button>
-        </fieldset>
-   End of reference -->     
+      
 
 
     <!--
@@ -1031,7 +1149,7 @@
         </div>
         -->
 
-    </div>
+    <!--</div>-->
 
 <!-- Sheet Workers -->
 <script type="text/worker">
