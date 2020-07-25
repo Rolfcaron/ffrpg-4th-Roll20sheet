@@ -30,6 +30,12 @@
         <input name="attr_weap_name" type="hidden" value="default">
         <input name="attr_weap_dmg" type="hidden" value = "-1">
         <input name="attr_hpMaxEarthFire" type="hidden" value = "0">
+        <input name="attr_hp_bonus" type="hidden" value="0">
+        <input name="attr_mp_bonus" type="hidden" value="0">
+        <input name="attr_weap_dif" type="hidden" value="40">
+        <input name="attr_weap_off" type="hidden" value="0">
+        <input name="attr_weap_def" type="hidden" value="Stat">
+        <input name="attr_weap_element" type="hidden" value="Non-Element">
 
 
     <div class="watermark">
@@ -38,8 +44,8 @@
 
 
     <div class="nameContainer">
-    	<input type="text" name="attr_character_name" placeholder="Short Character Name"/><br />
-        <input type="text" name="attr_character_fullName" placeholder="Full Character Name"/>
+    	<input type="text" name="attr_character_name" placeholder="Short Character Name" class="inputName" /><br />
+        <input type="text" name="attr_character_fullName" placeholder="Full Character Name" class="inputFName"/>
     </div>
 
     <div class="jobContainer">
@@ -68,8 +74,9 @@
                 <option value="Squire">Squire</option>
                 <option value="Wizard">Wizard</option>
         </select>
-    <!--
-		<span>Level: </span><span name="attr_level"></span><br />
+    
+		<span> Level: </span><span name="attr_level" class="dispLevel"></span><br />
+        <!--
 		<span>Total XP: </span><input type="number" name="attr_xp" class="longNum" /><br />
         <label>Spent XP:</label><span name="attr_spent_xp"></span>
         <label>Current XP:</label><span name="attr_current_xp"></span><br />
@@ -197,10 +204,12 @@
     </div>
 
     <div class="initContain">
+        <!--
         <span>Modifier to each: </span>
         <input type="number" name="attr_modInit" placeholder="0">
         <button type="roll" name="roll_initiative" value='&{template:default} {{name=@{character_name}}} {{result=[[1d10+@{modInit} &{tracker:+}]]}}'></button>
         <span>Roll this once per initiative die you have (default 3)</span>
+    -->
     </div>
 
     <div class="resistContain">
@@ -309,14 +318,14 @@
     <div class="eweaponContain">
         <div class="weapon">
             <h5>Equipped Weapon: </h5>
-            <select name="attr_weapon_equipped" class="stype">
+            <select name="attr_weapon_equipped" class="wepSelector">
                 <option value="1">1st</option>
                 <option value="2">2nd</option>
                 <option value="3">3rd</option>
                 <option value="4">4th</option>
                 <option value="5">5th</option>
             </select>
-            <span name="attr_weapon_equipped"></span>
+            <button type="roll" name="roll_attack" class="attackRoll" value="&{template:default} {{name=@{character_name} !Attack}}{{Attack=[[@{weap_off}+1d100-@{weap_dif}}]] vs @{weap_def} }}{{Damage=[[@{weap_dmg}+1d10]] vs @{weap_def}, Physical @{weap_element}}}{{Prop=@{weap_property} }}">!Attack</button>
             <span name="attr_weap_name"></span>
             <span> Dmg: </span><span name="attr_weap_dmg"> </span>
             <span name="attr_weap_element"></span>
@@ -329,6 +338,7 @@
 
     <div class="skillContain">
         <div class="skillContain2">
+            <h4>Skills</h4>
             <fieldset class="repeating_skills"> 
                 <input type="text" name="attr_skillname" class="skillName" placeholder="Skill Name" />
                 <input type="number" name="attr_skillvalue" class="skillNum" />
@@ -346,22 +356,23 @@
             <span class="fourd">1st:</span>
             <input type="text" name="attr_weapon_name_1" placeholder="Weapon Name" class="weaponName" />
             <span>Dmg: </span><span name="attr_weapon_dmg_1" class="fourd"></span>
-            <select name="attr_weapon_astat_1" class="stype">
+            <select name="attr_weapon_astat_1" class="skillDropdown">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
                 <option value="Water">Water</option>
             </select>
             <span> x </span>
-            <input type="number" name="attr_weapon_mult_1" />
+            <input type="number" name="attr_weapon_mult_1" class="dmgNum" />
             <span> vs </span>
-            <select name="attr_weapon_dstat_1" class="stype">
+            <select name="attr_weapon_dstat_1" class="skillDropdown">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
                 <option value="Water">Water</option>
             </select>
-            <select name="attr_weapon_element_1" class="element">   
+            <input type="number" name="attr_weapon_dif_1" placeholder="40" value="40" class="dmgNum" />
+            <select name="attr_weapon_element_1" class="wepElement">   
                 <option value="Crush">Crush</option>
                 <option value="Puncture">Puncture</option>
                 <option value="Cut">Cut</option>
@@ -376,27 +387,28 @@
                 <option value="Shadow">Shadow</option>
                 <option value="Non-Element">Non-Element</option>
             </select>
-            <input type="text" name="attr_weapon_property_1" placeholder="Weapon Property (if any)" /><br />
+            <input type="text" name="attr_weapon_property_1" placeholder="Weapon Property (if any)" class="wepProperty" /><br />
 
             <span class="fourd">2nd:</span>
             <input type="text" name="attr_weapon_name_2" placeholder="Weapon Name" class="weaponName" />
             <span>Dmg: </span><span name="attr_weapon_dmg_2" class="fourd"></span>
-            <select name="attr_weapon_astat_2" class="stype">
+            <select name="attr_weapon_astat_2"  class="skillDropdown">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
                 <option value="Water">Water</option>
             </select>
             <span> x </span>
-            <input type="number" name="attr_weapon_mult_2" />
+            <input type="number" name="attr_weapon_mult_2"  class="dmgNum" />
             <span> vs </span>
-            <select name="attr_weapon_dstat_2" class="stype">
+            <select name="attr_weapon_dstat_2"  class="skillDropdown">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
                 <option value="Water">Water</option>
             </select>
-            <select name="attr_weapon_element_2" class="element">   
+            <input type="number" name="attr_weapon_dif_2" placeholder="40" value="40" class="dmgNum" />
+            <select name="attr_weapon_element_2" class="wepElement">   
                 <option value="Crush">Crush</option>
                 <option value="Puncture">Puncture</option>
                 <option value="Cut">Cut</option>
@@ -411,27 +423,28 @@
                 <option value="Shadow">Shadow</option>
                 <option value="Non-Element">Non-Element</option>
             </select>
-            <input type="text" name="attr_weapon_property_2" placeholder="Weapon Property (if any)"/><br />
+            <input type="text" name="attr_weapon_property_2" placeholder="Weapon Property (if any)" class="wepProperty" /><br />
             
             <span class="fourd">3rd:</span>
             <input type="text" name="attr_weapon_name_3" placeholder="Weapon Name" class="weaponName" />
             <span>Dmg: </span><span name="attr_weapon_dmg_3" class="fourd"></span>
-            <select name="attr_weapon_astat_3" class="stype">
+            <select name="attr_weapon_astat_3"  class="skillDropdown">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
                 <option value="Water">Water</option>
             </select>
             <span> x </span>
-            <input type="number" name="attr_weapon_mult_3" />
+            <input type="number" name="attr_weapon_mult_3"  class="dmgNum" />
             <span> vs </span>
-            <select name="attr_weapon_dstat_3" class="stype">
+            <select name="attr_weapon_dstat_3"  class="skillDropdown">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
                 <option value="Water">Water</option>
             </select>
-            <select name="attr_weapon_element_3" class="element">   
+            <input type="number" name="attr_weapon_dif_3" placeholder="40" value="40" class="dmgNum" />
+            <select name="attr_weapon_element_3" class="wepElement">   
                 <option value="Crush">Crush</option>
                 <option value="Puncture">Puncture</option>
                 <option value="Cut">Cut</option>
@@ -446,27 +459,28 @@
                 <option value="Shadow">Shadow</option>
                 <option value="Non-Element">Non-Element</option>
             </select>
-            <input type="text" name="attr_weapon_property_3" placeholder="Weapon Property (if any)"  /><br />
+            <input type="text" name="attr_weapon_property_3" placeholder="Weapon Property (if any)"  class="wepProperty"  /><br />
             
             <span class="fourd">4th:</span>
             <input type="text" name="attr_weapon_name_4" placeholder="Weapon Name" class="weaponName" />
             <span>Dmg: </span><span name="attr_weapon_dmg_4" class="fourd"></span>
-            <select name="attr_weapon_astat_4" class="stype">
+            <select name="attr_weapon_astat_4"  class="skillDropdown">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
                 <option value="Water">Water</option>
             </select>
             <span> x </span>
-            <input type="number" name="attr_weapon_mult_4" />
+            <input type="number" name="attr_weapon_mult_4"  class="dmgNum" />
             <span> vs </span>
-            <select name="attr_weapon_dstat_4" class="stype">
+            <select name="attr_weapon_dstat_4"  class="skillDropdown">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
                 <option value="Water">Water</option>
             </select>
-            <select name="attr_weapon_element_4" class="element">   
+            <input type="number" name="attr_weapon_dif_4" placeholder="40" value="40" class="dmgNum" />
+            <select name="attr_weapon_element_4" class="wepElement">   
                 <option value="Crush">Crush</option>
                 <option value="Puncture">Puncture</option>
                 <option value="Cut">Cut</option>
@@ -481,27 +495,28 @@
                 <option value="Shadow">Shadow</option>
                 <option value="Non-Element">Non-Element</option>
             </select>
-            <input type="text" name="attr_weapon_property_4" placeholder="Weapon Property (if any)" /><br />
+            <input type="text" name="attr_weapon_property_4" placeholder="Weapon Property (if any)"  class="wepProperty" /><br />
             
             <span class="fourd">5th:</span>
             <input type="text" name="attr_weapon_name_5" placeholder="Weapon Name" class="weaponName" />
             <span>Dmg: </span><span name="attr_weapon_dmg_5" class="fourd"></span>
-            <select name="attr_weapon_astat_5" class="stype">
+            <select name="attr_weapon_astat_5"  class="skillDropdown">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
                 <option value="Water">Water</option>
             </select>
             <span> x </span>
-            <input type="number" name="attr_weapon_mult_5" />
+            <input type="number" name="attr_weapon_mult_5"  class="dmgNum" />
             <span> vs </span>
-            <select name="attr_weapon_dstat_5" class="stype">
+            <select name="attr_weapon_dstat_5"  class="skillDropdown">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
                 <option value="Water">Water</option>
             </select>
-            <select name="attr_weapon_element_5" class="element">   
+            <input type="number" name="attr_weapon_dif_5" placeholder="40" value="40" class="dmgNum" />
+            <select name="attr_weapon_element_5" class="wepElement">   
                 <option value="Crush">Crush</option>
                 <option value="Puncture">Puncture</option>
                 <option value="Cut">Cut</option>
@@ -516,15 +531,16 @@
                 <option value="Shadow">Shadow</option>
                 <option value="Non-Element">Non-Element</option>
             </select>
-            <input type="text" name="attr_weapon_property_5" placeholder="Weapon Property (if any)"/>
+            <input type="text" name="attr_weapon_property_5" placeholder="Weapon Property (if any)" class="wepProperty" />
         </div>
         <div class="abilityContain">
-            <h3>Passive Abilities</h3>
+            <h4>Passive Abilities</h4>
             <fieldset class="repeating_passives">
                 <input type="text" name="attr_passiveName" class="passiveName" placeholder="Ability Name" />
                 <input type="text" name="attr_passiveDesc" class="passiveDesc" placeholder="Ability Effect" />
             </fieldset>
-            <h3>Action Abilities</h3>
+            <h4>Action Abilities</h4>
+            <hr>
             <fieldset class="repeating_actions">
                 <input type="text" name="attr_actionName" class="actionName" />
                 <select name="attr_actionSlow" class="actionSlow">
@@ -539,12 +555,11 @@
                     <option value="8">Slow 8</option>
                     <option value="9">Slow 9</option>
                 </select>
-                <input type="text" class="hidden" name="attr_actionHiddenDmg" />
-                <input type="text" name="attr_actionMp" placeholder="0 Mp" class="numHundred" />
+                <input type="text" name="attr_actionMp" placeholder="0 Mp" class="abilityMP" />
                 <input type="text" name="attr_actionType" placeholder="!Attack" class="actionType" />
-                <input type="text" name="attr_actionDesc" placeholder="Ability Description" class="actionDesc" />
+                <input type="text" name="attr_actionDesc" placeholder="Ability Notes" class="actionDesc" />
                 <br />
-                <label>Attack:</label>
+                <span>Attack:</span>
                 <select name="attr_actionAttackStat" class="welement">
                     <option value="Weapon">Weapon</option>
                     <option value="Earth">Earth</option>
@@ -566,7 +581,7 @@
                 <span> + </span>
                 <input type="number" name="attr_actionDifficulty" placeholder="0" class="ref">
                 <br />
-                <label>Damage:</label>
+                <span>Damage:</span>
                 <select name="attr_actionDamageStat" class="welement">
                     <option value="Weapon">Weapon</option>
                     <option value="Earth">Earth</option>
@@ -601,6 +616,7 @@
                     <option value="Shadow">Shadow</option>
                     <option value="Non-Element">Non-Element</option>
                 </select>
+                <hr />
             </fieldset>
         </div>
     </div>
@@ -1220,57 +1236,152 @@ function updateEquippedWeapon(equipped)
     {
         case 1:
             //one = "on";
-            getAttrs(["weapon_name_1","weapon_dmg_1","weapon_property_1","weapon_element_1"], function(values)
+            getAttrs(["weapon_name_1","weapon_dmg_1","weapon_property_1","weapon_element_1","weapon_dif_1","weapon_dstat_1","weapon_astat_1","Earth","Air","Fire","Water"], function(values)
             {
 
                 setAttrs({weap_dmg: values.weapon_dmg_1});
                 setAttrs({weap_name: values.weapon_name_1});
                 setAttrs({weap_property: values.weapon_property_1});
                 setAttrs({weap_element: values.weapon_element_1});
+                setAttrs({weap_dif: values.weapon_dif_1});
+                setAttrs({weap_def: values.weapon_dstat_1});
+                switch(values.weapon_astat_1)
+                {
+                    case "Earth":
+                        setAttrs({weap_off: values.Earth});
+                        break;
+                    case "Air":
+                        setAttrs({weap_off: values.Air});
+                        break;
+                    case "Water":
+                        setAttrs({weap_off: values.Water});
+                        break;
+                    case "Fire":
+                        setAttrs({weap_off: values.Fire});
+                        break;
+                    default:
+                        setAttrs({weap_off: 0});
+                }
                 //setAttrs({weapon_equipped: 1});
             });
             break;
         case 2:
             //two = "on";
-            getAttrs(["weapon_name_2","weapon_dmg_2","weapon_property_2","weapon_element_2"], function(values)
+            getAttrs(["weapon_name_2","weapon_dmg_2","weapon_property_2","weapon_element_2","weapon_dif_2","weapon_dstat_2","weapon_astat_2","Earth","Air","Fire","Water"], function(values)
             {
                 setAttrs({weap_dmg: values.weapon_dmg_2});
                 setAttrs({weap_name: values.weapon_name_2});
                 setAttrs({weap_property: values.weapon_property_2});
                 setAttrs({weap_element: values.weapon_element_2});
+                setAttrs({weap_dif: values.weapon_dif_2});
+                setAttrs({weap_def: values.weapon_dstat_2});
+                switch(values.weapon_astat_2)
+                {
+                    case "Earth":
+                        setAttrs({weap_off: values.Earth});
+                        break;
+                    case "Air":
+                        setAttrs({weap_off: values.Air});
+                        break;
+                    case "Water":
+                        setAttrs({weap_off: values.Water});
+                        break;
+                    case "Fire":
+                        setAttrs({weap_off: values.Fire});
+                        break;
+                    default:
+                        setAttrs({weap_off: 0});
+                }
                 //setAttrs({weapon_equipped: 2});
             });
             break;
         case 3:
             //three = "on";
-            getAttrs(["weapon_name_3","weapon_dmg_3","weapon_property_3","weapon_element_3"], function(values)
+            getAttrs(["weapon_name_3","weapon_dmg_3","weapon_property_3","weapon_element_3","weapon_dif_3","weapon_dstat_3","weapon_astat_3","Earth","Air","Fire","Water"], function(values)
             {
                 setAttrs({weap_dmg: values.weapon_dmg_3});
                 setAttrs({weap_name: values.weapon_name_3});
                 setAttrs({weap_property: values.weapon_property_3});
                 setAttrs({weap_element: values.weapon_element_3});
+                setAttrs({weap_dif: values.weapon_dif_3});
+                setAttrs({weap_def: values.weapon_dstat_3});
+                switch(values.weapon_astat_3)
+                {
+                    case "Earth":
+                        setAttrs({weap_off: values.Earth});
+                        break;
+                    case "Air":
+                        setAttrs({weap_off: values.Air});
+                        break;
+                    case "Water":
+                        setAttrs({weap_off: values.Water});
+                        break;
+                    case "Fire":
+                        setAttrs({weap_off: values.Fire});
+                        break;
+                    default:
+                        setAttrs({weap_off: 0});
+                }
                 //setAttrs({weapon_equipped: 3});
             });
             break;
         case 4:
             //four = "on";
-            getAttrs(["weapon_name_4","weapon_dmg_4","weapon_property_4","weapon_element_4"], function(values)
+            getAttrs(["weapon_name_4","weapon_dmg_4","weapon_property_4","weapon_element_4","weapon_dif_4","weapon_dstat_4","weapon_astat_4","Earth","Air","Fire","Water"], function(values)
             {
                 setAttrs({weap_dmg: values.weapon_dmg_4});
                 setAttrs({weap_name: values.weapon_name_4});
                 setAttrs({weap_property: values.weapon_property_4});
                 setAttrs({weap_element: values.weapon_element_4});
+                setAttrs({weap_dif: values.weapon_dif_4});
+                setAttrs({weap_def: values.weapon_dstat_4});
+                switch(values.weapon_astat_4)
+                {
+                    case "Earth":
+                        setAttrs({weap_off: values.Earth});
+                        break;
+                    case "Air":
+                        setAttrs({weap_off: values.Air});
+                        break;
+                    case "Water":
+                        setAttrs({weap_off: values.Water});
+                        break;
+                    case "Fire":
+                        setAttrs({weap_off: values.Fire});
+                        break;
+                    default:
+                        setAttrs({weap_off: 0});
+                }
                 //setAttrs({weapon_equipped: 4});
             });
             break;
         case 5:
             //five = "on";
-            getAttrs(["weapon_name_5","weapon_dmg_5","weapon_property_5","weapon_element_5"], function(values)
+            getAttrs(["weapon_name_5","weapon_dmg_5","weapon_property_5","weapon_element_5","weapon_dif_5","weapon_dstat_5","weapon_astat_5","Earth","Air","Fire","Water"], function(values)
             {
                 setAttrs({weap_dmg: values.weapon_dmg_5});
                 setAttrs({weap_name: values.weapon_name_5});
                 setAttrs({weap_property: values.weapon_property_5});
                 setAttrs({weap_element: values.weapon_element_5});
+                setAttrs({weap_dif: values.weapon_dif_5});
+                setAttrs({weap_def: values.weapon_dstat_5});
+                switch(values.weapon_astat_5)
+                {
+                    case "Earth":
+                        setAttrs({weap_off: values.Earth});
+                        break;
+                    case "Air":
+                        setAttrs({weap_off: values.Air});
+                        break;
+                    case "Water":
+                        setAttrs({weap_off: values.Water});
+                        break;
+                    case "Fire":
+                        setAttrs({weap_off: values.Fire});
+                        break;
+                    default:
+                        setAttrs({weap_off: 0});
+                }
                 //setAttrs({weapon_equipped: 5});
             });
             break;

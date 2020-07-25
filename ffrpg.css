@@ -216,9 +216,7 @@ input[type=number].sheet-statValue {
 	text-align: center;
 }
 
-input.sheet-weaponName {
-	width: 100px;
-}
+
 
 
 
@@ -247,6 +245,7 @@ span.sheet-XPText {
 
 input.sheet-traitText {
 	width: 378px;
+	font-size: 11px;
 }
 
 input[type=number].sheet-xpNum {
@@ -282,7 +281,6 @@ span.sheet-statLevel {
 	width: 58px;
 	height: 58px;
 	text-align: center;
-	border: 1px dotted black;
 	vertical-align: top;
 	line-height: 58px;
 	font-size: 24px;
@@ -293,16 +291,21 @@ span.sheet-nextStat {
 	width: 20px;
 	height: 20px;
 	text-align: center;
-	border: 1px dotted black;
 	vertical-align: top;
 	line-height: 20px;
 }
 
 input.sheet-skillName {
 	width: 115px;
-	font-size: 11px;
+	font: 11px;
 	height: 22px;
 	vertical-align: center;
+}
+
+input.sheet-weaponName {
+	width: 115px;
+	font-size: 11px;
+	height: 22px;
 }
 
 span.sheet-resistLabel {
@@ -328,9 +331,17 @@ select.sheet-armorDropdown {
 
 input[type=number].sheet-skillNum {
 	width: 35px;
-	font-size: 9px;
 	height: 22px;
 	vertical-align: center;
+}
+
+input.sheet-inputName {
+	width: 360px;
+}
+
+input.sheet-inputFName {
+	width: 360px;
+	font-size: 11px;
 }
 
 span.sheet-armorSpan {
@@ -344,6 +355,31 @@ select.sheet-skillDropdown {
 	font-size: 9px;
 	height: 22px;
 	vertical-align: center;
+}
+
+select.sheet-wepSelector {
+	width: 45px;
+	height: 22px;
+	font-size: 9px;
+	vertical-align: center;
+}
+
+select.sheet-wepElement {
+	width: 75px;
+	font-size: 9px;
+	height: 22px;
+	vertical-align: center;
+}
+
+input.sheet-wepProperty {
+	width: 190px;
+	font-size: 9px;
+	height: 22px;
+}
+
+input[type=number].sheet-dmgNum {
+	height: 22px;
+
 }
 
 h2 {
@@ -410,6 +446,8 @@ input.sheet-short {
 
 input.sheet-actionName {
 	width: 120px;
+	height: 22px;
+	font-size: 11px;
 }
 
 input.sheet-numHundred {
@@ -425,7 +463,9 @@ input.sheet-longNum {
 }
 
 input.sheet-actionDesc {
-	width: 400px;
+	width: 600px;
+	font-size: 9px;
+	height: 22px;
 }
 
 span.sheet-small {
@@ -445,13 +485,18 @@ span.sheet-eightd {
 
 
 select.sheet-jobSelect {
-	width: 120px;
-	height: 35px;
+	width: 100px;
+	height: 25px;
+	font-size: 12px;
 }
 
 select.sheet-dtype {
     vertical-align: top;
     width: 60px;
+}
+
+span.sheet-dispLevel {
+	font-size: 24px;
 }
 
 
@@ -461,13 +506,22 @@ select.sheet-mtype {
 }
 
 select.sheet-actionSlow {
-	vertical-align: top;
+	vertical-align: center;
 	width: 100px;
+	height: 22px;
+	font-size: 9px;
 }
 
 select.sheet-element {
-	vertical-align: top;
+	vertical-align: center;
 	width: 100px;
+	height: 22px;
+	font-size: 9px;
+}
+
+input.sheet-actionType {
+	height: 22px;
+	font-size: 9px;
 }
 
 select.sheet-ttype {
@@ -480,19 +534,31 @@ select.sheet-status {
 	width: 100px;
 }
 
+input.sheet-abilityMP {
+	height: 22px;
+	width: 100px;
+	font-size: 9px;
+}
+
 select.sheet-welement {
-	vertical-align: top;
+	vertical-align: center;
 	width: 80px;
+	height: 22px;
+	font-size: 9px;
 }
 
 select.sheet-vsArmor {
-	vertical-align: top;
+	vertical-align: center;
 	width: 80px;
+	height: 22px;
+	font-size: 9px;
 }
 
 select.sheet-stype {
-	vertical-align: top;
+	vertical-align: center;
 	width: 70px;
+	height: 22px;
+	font-size: 9px;
 }
 
 span.sheet-dee {
@@ -503,6 +569,28 @@ span.sheet-dee {
 	position: relative;
 	top: 3px;
 }
+
+input.sheet-passiveName {
+	font-size: 11px;
+	height: 22px;
+}
+
+input.sheet-passiveDesc {
+	font-size: 11px;
+	height: 22px;
+	width: 580px;
+}
+
+input[type=number].sheet-ref {
+	height: 22px;
+	font-size: 9px;
+}
+
+button.sheet-attackRoll {
+	font-size: 9px;
+}
+
+
 
 /* Targetted styling that only effects elements contained within the stated class */
 .sheet-stats h3 {
