@@ -2,39 +2,58 @@
 
 .charsheet {
 	
-	background-color: #FAFAFA;
+	/* background-color: #FAFAFA; */
+/*	background-image: linear-gradient(to bottom right, #00006B, #AAAAAA);
 	min-width: 800px;
-	min-height: 1200px;
+	min-height: 1600px; */
 }
 
 div {
 	z-index: 1;
 }
 
+h5 {
+	color: white;
+}
+
+h4 {
+	color: white;
+}
+
 span {
 	font-family: Candara, Sans-Serif;
-	/* background-color: #FFFFFF; */
-	/* box-shadow: 4px 4px 2px 1px rgba(255, 0, 0, .2); */
+	border-radius: 3px;
+	background-color: #FFFFFF;
+	box-shadow: 4px 4px 2px 1px rgb(150,125,125, .2); 
+
+	/* box-shadow: 4px 4px 2px 1px rgba(150, 125, 125, .2); */
 }
 
 input {
 	font-family: Candara, Sans-Serif;
 	border: none;
+	border-radius: 3px;
 }
 
 select {
 	font-family: Candara, Sans-Serif;
 	border: none;
+	border-radius: 3px;
 }
 
 
 
 div.sheet-main {
 	display: grid;
-	grid-template-columns: repeat(39,20px [allCol]);
+	grid-template-columns: repeat(40,20px [allCol]);
 	grid-template-rows: repeat(40, 20px [allRow]) [flexRow] auto [postFlex] 20px;
 
+	/* background-image: linear-gradient(to bottom right, #00006B, #AAAAAA); */
+	/* background-image: linear-gradient(to bottom right, #00006B, #9999FF); */
 
+	background-color: #00006B;
+	min-width: 800px;
+	min-height: 1600px;
 }
 
 div.sheet-watermark {
@@ -48,20 +67,32 @@ div.sheet-watermark {
 /* Universal styling applied to all elements of these types */
 
 div.sheet-nameContainer {
+	border: 4px ridge silver;
+	background-image: linear-gradient(to bottom right, #00006B, #9999FF);
+	box-shadow: 4px 4px 2px 1px rgb(150,125,125, .2);
+	border-radius: 5px;
 	grid-column-start: allCol 1;
 	grid-column-end: allCol 19;
 	grid-row-start: allRow 1;
-	grid-row-end: allRow 5;
+	grid-row-end: allRow 4;
 }
 
 div.sheet-jobContainer {
+	border: 4px ridge silver;
+	background-image: linear-gradient(to bottom right, #00006B, #9999FF);
+	box-shadow: 4px 4px 2px 1px rgb(150,125,125, .2);
+	border-radius: 5px;
 	grid-column-start: allCol 1;
 	grid-column-end: allCol 19;
-	grid-row-start: allRow 6;
-	grid-row-end: allRow 8;
+	grid-row-start: allRow 5;
+	grid-row-end: allRow 7;
 }
 
 div.sheet-traitContainer {
+	border: 4px ridge silver;
+	background-image: linear-gradient(to bottom right, #00006B, #9999FF);
+	box-shadow: 4px 4px 2px 1px rgb(150,125,125, .2);
+	border-radius: 5px;
 	grid-column-start: allCol 20;
 	grid-column-end: allCol 40;
 	grid-row-start: allRow 1;
@@ -69,9 +100,13 @@ div.sheet-traitContainer {
 }
 
 div.sheet-xpContainer {
+	border: 4px ridge silver;
+	background-image: linear-gradient(to bottom right, #00006B, #9999FF);
+	box-shadow: 4px 4px 2px 1px rgb(150,125,125, .2);
+	border-radius: 5px;
 	grid-column-start: allCol 1;
 	grid-column-end: allCol 19;
-	grid-row-start: allRow 9;
+	grid-row-start: allRow 8;
 	grid-row-end: allRow 11;
 
 	
@@ -80,6 +115,10 @@ div.sheet-xpContainer {
 
 
 div.sheet-quirkContainer {
+	border: 4px ridge silver;
+	background-image: linear-gradient(to bottom right, #00006B, #9999FF);
+	box-shadow: 4px 4px 2px 1px rgb(150,125,125, .2);
+	border-radius: 5px;
 	grid-column-start: allCol 20;
 	grid-column-end: allCol 40;
 	grid-row-start: allRow 6;
@@ -87,13 +126,21 @@ div.sheet-quirkContainer {
 }
 
 div.sheet-attributeContainer {
+	border: 4px ridge silver;
+	background-image: linear-gradient(to bottom right, #00006B, #9999FF);
+	box-shadow: 4px 4px 2px 1px rgb(150,125,125, .2);
+	border-radius: 5px;
 	grid-column-start: allCol 1;
 	grid-column-end: allCol 14;
 	grid-row-start: allRow 12;
-	grid-row-end: allRow 24;
+	grid-row-end: allRow 25;
 }
 
 div.sheet-hipContainer {
+	border: 4px ridge silver;
+	background-image: linear-gradient(to bottom right, #00006B, #9999FF);
+	box-shadow: 4px 4px 2px 1px rgb(150,125,125, .2);
+	border-radius: 5px;
 	grid-column-start: allCol 15;
 	grid-column-end: allCol 26;
 	grid-row-start: allRow 12;
@@ -101,6 +148,10 @@ div.sheet-hipContainer {
 }
 
 div.sheet-armorContain {
+	border: 4px ridge silver;
+	background-image: linear-gradient(to bottom right, #00006B, #9999FF);
+	box-shadow: 4px 4px 2px 1px rgb(150,125,125, .2);
+	border-radius: 5px;
 	grid-column-start: allCol 15;
 	grid-column-end: allCol 20;
 	grid-row-start: allRow 17;
@@ -108,6 +159,10 @@ div.sheet-armorContain {
 }
 
 div.sheet-magicarmorContain {
+	border: 4px ridge silver;
+	background-image: linear-gradient(to bottom right, #00006B, #9999FF);
+	box-shadow: 4px 4px 2px 1px rgb(150,125,125, .2);
+	border-radius: 5px;
 	grid-column-start: allCol 21;
 	grid-column-end: allCol 26;
 	grid-row-start: allRow 17;
@@ -122,8 +177,12 @@ div.sheet-initContain {
 }
 
 div.sheet-resistContain {
+	border: 4px ridge silver;
+	background-image: linear-gradient(to bottom right, #00006B, #9999FF);
+	box-shadow: 4px 4px 2px 1px rgb(150,125,125, .2);
+	border-radius: 5px;
 	grid-column-start: allCol 27;
-	grid-column-end: allCol 39;
+	grid-column-end: allCol 40;
 	grid-row-start: allRow 12;
 	grid-row-end: allRow 22;
 
@@ -144,6 +203,7 @@ div.sheet-secondResist {
 }
 
 div.sheet-eweaponContain {
+
 	grid-column-start: allCol 1;
 	grid-column-end: allCol 24;
 	grid-row-start: allRow 25;
@@ -153,7 +213,7 @@ div.sheet-eweaponContain {
 div.sheet-skillContain {
 	grid-column-start: allCol 1;
 	grid-column-end: allCol 39;
-	grid-row-start: allRow 28;
+	grid-row-start: allRow 29;
 	grid-row-end: flexRow;
 }
 
@@ -183,29 +243,54 @@ div.sheet-graphicContain {
 	grid-column-start: allCol 15;
 	grid-column-end: allCol 24;
 	grid-row-start: allRow 28;
-	grid-row-end: allRow 39;
+	grid-row-end: allRow 37;
+}
+
+div.sheet-hopingthisworks{
+	border: 4px ridge silver;
+	background-image: linear-gradient(to bottom right, #00006B, #9999FF);
+	box-shadow: 4px 4px 2px 1px rgb(150,125,125, .2);
+	border-radius: 5px;
+	grid-column-start: allCol 25;
+	grid-column-end: allCol 39;
+	grid-row-start: allRow 25;
+	grid-row-end: allRow 29;
 }
 
 div.sheet-earmorBlock {
+	/*
+	border: 4px ridge silver;
+	background-image: linear-gradient(to bottom right, #00006B, #9999FF);
+	box-shadow: 4px 4px 2px 1px rgb(150,125,125, .2);
+	border-radius: 5px;
 	grid-column-start: allCol 25;
 	grid-column-end: allCol 39;
 	grid-row-start: allRow 25;
 	grid-row-end: allRow 26;
+	*/
+	height: 19px;
+}
+
+div.sheet-equippedWeaponTextContainer {
+	display: inline-block;
+	border-radius: 10px;
+	background-color: #FFFFFF;
 }
 
 span.sheet-earmorBlockeArmor {
 	display: inline-block;
-	width: 170px;
-	font-size: 8px;
+	width: 166px;
+	font-size: 10px;
 }
 
 span.sheet-earmorblockP {
 	display: inline-block;
-	width: 50px;
-	font-size: 8px;
+	width: 45px;
+	font-size: 10px;
 }
 
 div.sheet-earmorContain {
+	
 	grid-column-start: allCol 25;
 	grid-column-end: allCol 39;
 	grid-row-start: allRow 26;
@@ -217,6 +302,10 @@ input.sheet-armProp {
 }
 
 div.sheet-acc1Contain {
+	border: 4px ridge silver;
+	background-image: linear-gradient(to bottom right, #00006B, #9999FF);
+	box-shadow: 4px 4px 2px 1px rgb(150,125,125, .2);
+	border-radius: 5px;
 	grid-column-start: allCol 25;
 	grid-column-end: allCol 39;
 	grid-row-start: allRow 30;
@@ -224,6 +313,10 @@ div.sheet-acc1Contain {
 }
 
 div.sheet-acc2Contain {
+	border: 4px ridge silver;
+	background-image: linear-gradient(to bottom right, #00006B, #9999FF);
+	box-shadow: 4px 4px 2px 1px rgb(150,125,125, .2);
+	border-radius: 5px;
 	grid-column-start: allCol 25;
 	grid-column-end: allCol 39;
 	grid-row-start: allRow 34;
@@ -246,7 +339,7 @@ input[type=number].sheet-statValue {
 span.sheet-XPTest {
 	display: inline-block;
 	width: 35px;
-	height: 20px;
+	height: 10px;
 }
 
 textarea.sheet-quirkText {
@@ -267,8 +360,9 @@ span.sheet-XPText {
 }
 
 input.sheet-traitText {
-	width: 378px;
+	width: 383px;
 	font-size: 11px;
+	height: 22px;
 }
 
 input[type=number].sheet-xpNum {
@@ -278,7 +372,7 @@ input[type=number].sheet-xpNum {
 
 input[type=number].sheet-currHp {
 	width: 50px;
-	height: 40px;
+	height: 35px;
 	font-size: 18px;
 	text-align: right;
 }
@@ -473,7 +567,7 @@ select.sheet-resist {
 }
 
 select.sheet-armorDropdown {
-	width: 58px;
+	width: 53px;
 	font-size: 8px;
 	vertical-align: top;
 }
@@ -485,17 +579,17 @@ input[type=number].sheet-skillNum {
 }
 
 input.sheet-inputName {
-	width: 360px;
+	width: 350px;
 }
 
 input.sheet-inputFName {
-	width: 360px;
+	width: 350px;
 	font-size: 11px;
 }
 
 span.sheet-armorSpan {
 	display: inline-block;
-	width: 38px;
+	width: 30px;
 	font-size: 20px;
 }
 
@@ -509,21 +603,28 @@ select.sheet-skillDropdown {
 select.sheet-wepSelector {
 	width: 45px;
 	height: 22px;
-	font-size: 9px;
+	font-size: 11px;
+	vertical-align: center;
+}
+
+select.sheet-wepStatDropdown {
+	width: 70px;
+	height: 22px;
+	font-size: 10px;
 	vertical-align: center;
 }
 
 select.sheet-wepElement {
-	width: 75px;
-	font-size: 9px;
+	width: 90px;
+	font-size: 10px;
 	height: 22px;
 	vertical-align: center;
 }
 
 input.sheet-wepProperty {
-	width: 190px;
-	font-size: 9px;
-	height: 22px;
+	width: 500px;
+	font-size: 10px;
+	height: 24px;
 }
 
 input[type=number].sheet-dmgNum {
@@ -546,11 +647,13 @@ label {
 input {
 	display: inline-block;
 	width: 165px;
-	box-shadow: 4px 4px 2px 1px rgba(0, 0, 255, .2);
+	box-shadow: 4px 4px 2px 1px rgb(192,192,192, .4);
+
+	/* box-shadow: 4px 4px 2px 1px rgba(150, 125, 125, .2); */
 }
 
 select {
-	box-shadow: 4px 4px 2px 1px rgba(0, 0, 255, .2);
+	box-shadow: 4px 4px 2px 1px rgba(192,192,192, .4);
 }
 /*
 img {
@@ -634,9 +737,16 @@ span.sheet-eightd {
 
 
 select.sheet-jobSelect {
+	vertical-align: top;
 	width: 100px;
 	height: 25px;
 	font-size: 12px;
+}
+
+span.sheet-leveltext{
+	display: inline-block;
+	vertical-align: top;
+	text-align: top;
 }
 
 select.sheet-dtype {

@@ -26,7 +26,7 @@
         <input name="attr_weapon_dmg_5" type="hidden">
         <input name="attr_weapon_equipped" type="hidden" value="1">
         <input name="attr_weapon_name" type="hidden">
-        <input name="attr_weap_property" type="hidden" value="default">
+        <input name="attr_weap_property" type="hidden" value="">
         <input name="attr_weap_name" type="hidden" value="default">
         <input name="attr_weap_dmg" type="hidden" value = "-1">
         <input name="attr_hpMaxEarthFire" type="hidden" value = "0">
@@ -36,12 +36,30 @@
         <input name="attr_weap_off" type="hidden" value="0">
         <input name="attr_weap_def" type="hidden" value="Stat">
         <input name="attr_weap_element" type="hidden" value="Non-Element">
+        
+        <input name="attr_amon_hp_1" type="hidden" value="0">
+        <input name="attr_amon_mp_1" type="hidden" value="0">
 
+        <input name="attr_aamon_hp_2" type="hidden" value="0">
+        <input name="attr_aamon_mp_2" type="hidden" value="0">
+        <input name="attr_aamon_hp_3" type="hidden" value="0">
+        <input name="attr_aamon_mp_3" type="hidden" value="0">
+        <input name="attr_aamon_hp_4" type="hidden" value="0">
+        <input name="attr_aamon_mp_4" type="hidden" value="0">
+        <input name="attr_aamon_hp_5" type="hidden" value="0">
+        <input name="attr_aamon_mp_5" type="hidden" value="0">
+        <input name="attr_aamon_hp_6" type="hidden" value="0">
+        <input name="attr_aamon_mp_6" type="hidden" value="0">
+        <input name="attr_aamon_hp_7" type="hidden" value="0">
+        <input name="attr_aamon_mp_7" type="hidden" value="0">
+        <input name="attr_aamon_hp_8" type="hidden" value="0">
+        <input name="attr_aamon_mp_8" type="hidden" value="0">
 
+<!--
     <div class="watermark">
         <img src="https://raw.githubusercontent.com/Rolfcaron/ffrpg-4th-Roll20sheet/master/final-fantasy-vi-mog.png" />
     </div>
-
+-->
 
     <div class="nameContainer">
     	<input type="text" name="attr_character_name" placeholder="Short Character Name" class="inputName" /><br />
@@ -75,7 +93,7 @@
                 <option value="Wizard">Wizard</option>
         </select>
     
-		<span> Level: </span><span name="attr_level" class="dispLevel"></span><br />
+		<span class="leveltext"> Level: </span><span name="attr_level" class="dispLevel"></span><br />
         <!--
 		<span>Total XP: </span><input type="number" name="attr_xp" class="longNum" /><br />
         <label>Spent XP:</label><span name="attr_spent_xp"></span>
@@ -218,7 +236,7 @@
 
     <div class="resistContain">
         <div class="firstResist">
-            <span class="resistLabel">Crush</span>
+            <span class="resistLabel"> Crush</span>
                 <select name="attr_element_crush" class="resist">
                     <option value="100">Normal</option>
                     <option value="200">Weak</option>
@@ -226,7 +244,7 @@
                     <option value="0">Immune</option>
                     <option value="-100">Absorb</option>
                 </select><br />
-            <span class="resistLabel">Puncture</span>
+            <span class="resistLabel"> Puncture</span>
                 <select name="attr_element_puncture" class="resist">
                     <option value="100">Normal</option>
                     <option value="200">Weak</option>
@@ -234,7 +252,7 @@
                     <option value="0">Immune</option>
                     <option value="-100">Absorb</option>
                 </select><br />
-            <span class="resistLabel">Cut</span>
+            <span class="resistLabel"> Cut</span>
                 <select name="attr_element_cut" class="resist">
                     <option value="100">Normal</option>
                     <option value="200">Weak</option>
@@ -242,7 +260,7 @@
                     <option value="0">Immune</option>
                     <option value="-100">Absorb</option>
                 </select><br />
-            <span class="resistLabel">Fire</span>
+            <span class="resistLabel"> Fire</span>
                 <select name="attr_element_fire" class="resist">
                     <option value="100">Normal</option>
                     <option value="200">Weak</option>
@@ -250,7 +268,7 @@
                     <option value="0">Immune</option>
                     <option value="-100">Absorb</option>
                 </select><br />
-            <span class="resistLabel">Ice</span>
+            <span class="resistLabel"> Ice</span>
                 <select name="attr_element_ice" class="resist">
                     <option value="100">Normal</option>
                     <option value="200">Weak</option>
@@ -258,7 +276,7 @@
                     <option value="0">Immune</option>
                     <option value="-100">Absorb</option>
                 </select><br />
-            <span class="resistLabel">Lightning</span>
+            <span class="resistLabel"> Lightning</span>
                 <select name="attr_element_lightning" class="resist">
                     <option value="100">Normal</option>
                     <option value="200">Weak</option>
@@ -268,7 +286,7 @@
                 </select>
         </div>
         <div class="secondResist">
-            <span class="resistLabel">Air</span>
+            <span class="resistLabel"> Air</span>
                 <select name="attr_element_air" class="resist">
                     <option value="100">Normal</option>
                     <option value="200">Weak</option>
@@ -276,7 +294,7 @@
                     <option value="0">Immune</option>
                     <option value="-100">Absorb</option>
                 </select><br />
-            <span class="resistLabel">Earth</span>
+            <span class="resistLabel"> Earth</span>
                 <select name="attr_element_earth" class="resist">
                     <option value="100">Normal</option>
                     <option value="200">Weak</option>
@@ -284,7 +302,7 @@
                     <option value="0">Immune</option>
                     <option value="-100">Absorb</option>
                 </select><br />
-            <span class="resistLabel">Water</span>
+            <span class="resistLabel"> Water</span>
                 <select name="attr_element_water" class="resist">
                     <option value="100">Normal</option>
                     <option value="200">Weak</option>
@@ -292,7 +310,7 @@
                     <option value="0">Immune</option>
                     <option value="-100">Absorb</option>
                 </select><br />
-            <span class="resistLabel">Bio</span>
+            <span class="resistLabel"> Bio</span>
                 <select name="attr_element_bio" class="resist">
                     <option value="100">Normal</option>
                     <option value="200">Weak</option>
@@ -300,7 +318,7 @@
                     <option value="0">Immune</option>
                     <option value="-100">Absorb</option>
                 </select><br />
-            <span class="resistLabel">Light</span>
+            <span class="resistLabel"> Holy</span>
                 <select name="attr_element_light" class="resist">
                     <option value="100">Normal</option>
                     <option value="200">Weak</option>
@@ -308,7 +326,7 @@
                     <option value="0">Immune</option>
                     <option value="-100">Absorb</option>
                 </select><br />
-            <span class="resistLabel">Shadow</span>
+            <span class="resistLabel"> Shadow</span>
                 <select name="attr_element_shadow" class="resist">
                     <option value="100">Normal</option>
                     <option value="200">Weak</option>
@@ -329,11 +347,15 @@
                 <option value="4">4th</option>
                 <option value="5">5th</option>
             </select>
-            <button type="roll" name="roll_attack" class="attackRoll" value="&{template:default} {{name=@{character_name} !Attack}}{{Attack=[[@{weap_off}+1d100-@{weap_dif}}]] vs @{weap_def} }}{{Damage=[[@{weap_dmg}+1d10]] vs @{weap_def}, Physical @{weap_element}}}{{Prop=@{weap_property} }}">!Attack</button>
-            <span name="attr_weap_name"></span>
-            <span> Dmg: </span><span name="attr_weap_dmg"> </span>
-            <span name="attr_weap_element"></span>
-            <span> Property: </span><span name="attr_weap_property"></span>
+            <button type="roll" name="roll_attack" class="attackRoll" value="&{template:default} {{name=@{character_name} !Attack}}{{Attack=[[@{weap_off}+1d100-@{weap_dif}}]] vs @{weap_def} }}{{Damage=[[@{weap_dmg}+1d10]] vs @{weap_def}, Physical @{weap_element}}}{{Property=@{weap_property} }}">!Attack</button>
+            <div class="equippedWeaponTextContainer">
+                <span name="attr_weap_name"></span>
+                <span> Dmg: </span><span name="attr_weap_dmg"> </span>
+                <span name="attr_weap_element"></span>
+                <br />
+                <span> Property: </span><span name="attr_weap_property"></span>
+            
+            </div>
             <br />
             
         
@@ -352,15 +374,16 @@
                     <option value="Fire">Fire</option>
                     <option value="Water">Water</option>
                 </select>
-                <button type='roll' name='roll_testattack' value='&{template:default} {{name=@{character_name}}}{{result=[[@{skillvalue}d100k1]]}}'></button>
+                <button type='roll' name='roll_testattack' value="&{template:default} {{name=@{character_name}'s @{skillname}}}{{result=[[(@{skillvalue}+1)d100k1]]}}"></button>
             </fieldset>
+            <hr />
         </div>
 
         <div class="weaponContain">
             <span class="fourd">1st:</span>
             <input type="text" name="attr_weapon_name_1" placeholder="Weapon Name" class="weaponName" />
             <span>Dmg: </span><span name="attr_weapon_dmg_1" class="fourd"></span>
-            <select name="attr_weapon_astat_1" class="skillDropdown">
+            <select name="attr_weapon_astat_1" class="wepStatDropdown">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
@@ -369,7 +392,7 @@
             <span> x </span>
             <input type="number" name="attr_weapon_mult_1" class="dmgNum" />
             <span> vs </span>
-            <select name="attr_weapon_dstat_1" class="skillDropdown">
+            <select name="attr_weapon_dstat_1" class="wepStatDropdown">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
@@ -381,7 +404,7 @@
                 <option value="Puncture">Puncture</option>
                 <option value="Cut">Cut</option>
                 <option value="Fire">Fire</option>
-                <option value="Ice">Lightning</option>
+                <option value="Ice">Ice</option>
                 <option value="Lightning">Lightning</option>
                 <option value="Air">Air</option>
                 <option value="Earth">Earth</option>
@@ -390,13 +413,13 @@
                 <option value="Light">Light</option>
                 <option value="Shadow">Shadow</option>
                 <option value="Non-Element">Non-Element</option>
-            </select>
-            <input type="text" name="attr_weapon_property_1" placeholder="Weapon Property (if any)" class="wepProperty" /><br />
+            </select><br />
+            <input type="text" name="attr_weapon_property_1" placeholder="Weapon Property (if any)" class="wepProperty" /><br /><br />
 
             <span class="fourd">2nd:</span>
             <input type="text" name="attr_weapon_name_2" placeholder="Weapon Name" class="weaponName" />
             <span>Dmg: </span><span name="attr_weapon_dmg_2" class="fourd"></span>
-            <select name="attr_weapon_astat_2"  class="skillDropdown">
+            <select name="attr_weapon_astat_2"  class="wepStatDropdown">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
@@ -405,7 +428,7 @@
             <span> x </span>
             <input type="number" name="attr_weapon_mult_2"  class="dmgNum" />
             <span> vs </span>
-            <select name="attr_weapon_dstat_2"  class="skillDropdown">
+            <select name="attr_weapon_dstat_2"  class="wepStatDropdown">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
@@ -427,12 +450,12 @@
                 <option value="Shadow">Shadow</option>
                 <option value="Non-Element">Non-Element</option>
             </select>
-            <input type="text" name="attr_weapon_property_2" placeholder="Weapon Property (if any)" class="wepProperty" /><br />
+            <input type="text" name="attr_weapon_property_2" placeholder="Weapon Property (if any)" class="wepProperty" /><br /><br />
             
             <span class="fourd">3rd:</span>
             <input type="text" name="attr_weapon_name_3" placeholder="Weapon Name" class="weaponName" />
             <span>Dmg: </span><span name="attr_weapon_dmg_3" class="fourd"></span>
-            <select name="attr_weapon_astat_3"  class="skillDropdown">
+            <select name="attr_weapon_astat_3"  class="wepStatDropdown">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
@@ -441,7 +464,7 @@
             <span> x </span>
             <input type="number" name="attr_weapon_mult_3"  class="dmgNum" />
             <span> vs </span>
-            <select name="attr_weapon_dstat_3"  class="skillDropdown">
+            <select name="attr_weapon_dstat_3"  class="wepStatDropdown">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
@@ -463,12 +486,12 @@
                 <option value="Shadow">Shadow</option>
                 <option value="Non-Element">Non-Element</option>
             </select>
-            <input type="text" name="attr_weapon_property_3" placeholder="Weapon Property (if any)"  class="wepProperty"  /><br />
+            <input type="text" name="attr_weapon_property_3" placeholder="Weapon Property (if any)"  class="wepProperty"  /><br /><br />
             
             <span class="fourd">4th:</span>
             <input type="text" name="attr_weapon_name_4" placeholder="Weapon Name" class="weaponName" />
             <span>Dmg: </span><span name="attr_weapon_dmg_4" class="fourd"></span>
-            <select name="attr_weapon_astat_4"  class="skillDropdown">
+            <select name="attr_weapon_astat_4"  class="wepStatDropdown">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
@@ -477,7 +500,7 @@
             <span> x </span>
             <input type="number" name="attr_weapon_mult_4"  class="dmgNum" />
             <span> vs </span>
-            <select name="attr_weapon_dstat_4"  class="skillDropdown">
+            <select name="attr_weapon_dstat_4"  class="wepStatDropdown">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
@@ -499,12 +522,12 @@
                 <option value="Shadow">Shadow</option>
                 <option value="Non-Element">Non-Element</option>
             </select>
-            <input type="text" name="attr_weapon_property_4" placeholder="Weapon Property (if any)"  class="wepProperty" /><br />
+            <input type="text" name="attr_weapon_property_4" placeholder="Weapon Property (if any)"  class="wepProperty" /><br /><br />
             
             <span class="fourd">5th:</span>
             <input type="text" name="attr_weapon_name_5" placeholder="Weapon Name" class="weaponName" />
             <span>Dmg: </span><span name="attr_weapon_dmg_5" class="fourd"></span>
-            <select name="attr_weapon_astat_5"  class="skillDropdown">
+            <select name="attr_weapon_astat_5"  class="wepStatDropdown">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
@@ -513,7 +536,7 @@
             <span> x </span>
             <input type="number" name="attr_weapon_mult_5"  class="dmgNum" />
             <span> vs </span>
-            <select name="attr_weapon_dstat_5"  class="skillDropdown">
+            <select name="attr_weapon_dstat_5"  class="wepStatDropdown">
                 <option value="Earth">Earth</option>
                 <option value="Air">Air</option>
                 <option value="Fire">Fire</option>
@@ -538,13 +561,14 @@
             <input type="text" name="attr_weapon_property_5" placeholder="Weapon Property (if any)" class="wepProperty" />
         </div>
         <div class="abilityContain">
+            <hr />
             <h4>Passive Abilities</h4>
             <fieldset class="repeating_passives">
                 <input type="text" name="attr_passiveName" class="passiveName" placeholder="Ability Name" />
                 <input type="text" name="attr_passiveDesc" class="passiveDesc" placeholder="Ability Effect" />
             </fieldset>
+            <hr />
             <h4>Action Abilities</h4>
-            <hr>
             <fieldset class="repeating_actions">
                 <input type="text" name="attr_actionName" class="actionName" />
                 <select name="attr_actionSlow" class="actionSlow">
@@ -624,20 +648,22 @@
             </fieldset>
         </div>
     </div>
+    <div class="hopingthisworks">
+        <div class="earmorBlock">
+            
+            <span class="earmorBlockeArmor">Equipped Armor</span>
+            <span class="earmorblockP">Physical</span>
+            <span class="earmorblockP">Magical</span>
+        
+        </div>
 
-    <div class="earmorBlock">
-        <span class="earmorBlockeArmor">Equipped Armor</span>
-        <span class="earmorblockP">Physical</span>
-        <span class="earmorblockP">Magical</span>
+        <div class="earmorContain">
+                <input type="text" name="attr_armor_name" class="armName" placeholder="Equipped Armor Name">
+                <input type="number" name="attr_armor_arm">
+                <input type="number" name="attr_armor_marm">
+                <input type="text" name="attr_armor_property" class="armProp" placeholder="Armor property (if any)">
+        </div>
     </div>
-
-    <div class="earmorContain">
-            <input type="text" name="attr_armor_name" class="armName" placeholder="Equipped Armor Name">
-            <input type="number" name="attr_armor_arm">
-            <input type="number" name="attr_armor_marm">
-            <input type="text" name="attr_armor_property" class="armProp" placeholder="Armor property (if any)">
-    </div>
-
     <div class="acc1Contain">
         <input type="text" name="attr_acc1_name" placeholder="Accessory Name" />
         <input type="text" name="attr_acc1_property" placeholder="Accessory Property" class="armProp" />
@@ -2019,6 +2045,12 @@ on("change:water_level", function()
     updateWeaponDmg(6);
     updateArmor();
 });
+
+on("change:level", function (){
+    updateHp_Max();
+    updateMp_Max();
+
+});
  
 
 on("change:hp_bonus", function () {updateHp_Max()} );
@@ -2032,7 +2064,6 @@ on("change:mp_bonus", function () {updateMp_Max()} );
 on("change:mp_mult", function () {updateMp_Max()} );
 
 on("change:mp_perc", function () {updateMp_Max()} );
-
 
 
 on("change:weapon_mult_1", function () 
@@ -2106,5 +2137,95 @@ on("change:armstat", function (){
 
 on("change:marmstat", function (){
     updateArmor();
+});
+
+on("change:weapon_element_1", function (){
+    getAttrs(["weapon_equipped"],function (values){
+        if(values.weapon_equipped == 1)
+        {
+            updateEquippedWeapon(1);
+        }
+    });
+});
+
+on("change:weapon_element_2", function (){
+    getAttrs(["weapon_equipped"],function (values){
+        if(values.weapon_equipped == 2)
+        {
+            updateEquippedWeapon(2);
+        }
+    });
+});
+
+on("change:weapon_element_3", function (){
+    getAttrs(["weapon_equipped"],function (values){
+        if(values.weapon_equipped == 3)
+        {
+            updateEquippedWeapon(3);
+        }
+    });
+});
+
+on("change:weapon_element_4", function (){
+    getAttrs(["weapon_equipped"],function (values){
+        if(values.weapon_equipped == 4)
+        {
+            updateEquippedWeapon(4);
+        }
+    });
+});
+
+on("change:weapon_element_5", function (){
+    getAttrs(["weapon_equipped"],function (values){
+        if(values.weapon_equipped == 5)
+        {
+            updateEquippedWeapon(5);
+        }
+    });
+});
+
+on("change:weapon_property_1", function (){
+    getAttrs(["weapon_equipped"],function (values){
+        if(values.weapon_equipped == 1)
+        {
+            updateEquippedWeapon(1);
+        }
+    });
+});
+
+on("change:weapon_property_2", function (){
+    getAttrs(["weapon_equipped"],function (values){
+        if(values.weapon_equipped == 2)
+        {
+            updateEquippedWeapon(2);
+        }
+    });
+});
+
+on("change:weapon_property_3", function (){
+    getAttrs(["weapon_equipped"],function (values){
+        if(values.weapon_equipped == 3)
+        {
+            updateEquippedWeapon(3);
+        }
+    });
+});
+
+on("change:weapon_property_4", function (){
+    getAttrs(["weapon_equipped"],function (values){
+        if(values.weapon_equipped == 4)
+        {
+            updateEquippedWeapon(4);
+        }
+    });
+});
+
+on("change:weapon_property_5", function (){
+    getAttrs(["weapon_equipped"],function (values){
+        if(values.weapon_equipped == 5)
+        {
+            updateEquippedWeapon(5);
+        }
+    });
 });
 </script>
