@@ -24,6 +24,16 @@
         <input name="attr_weapon_dmg_3" type="hidden">
         <input name="attr_weapon_dmg_4" type="hidden">
         <input name="attr_weapon_dmg_5" type="hidden">
+        <input name="attr_weapon_mult_1" type="hidden">
+        <input name="attr_weapon_mult_2" type="hidden">
+        <input name="attr_weapon_mult_3" type="hidden">
+        <input name="attr_weapon_mult_4" type="hidden">
+        <input name="attr_weapon_mult_5" type="hidden">
+        <input name="attr_weapon_armor_1" type="hidden" value="Physical">
+        <input name="attr_weapon_armor_2" type="hidden" value="Physical">
+        <input name="attr_weapon_armor_3" type="hidden" value="Physical">
+        <input name="attr_weapon_armor_4" type="hidden" value="Physical">
+        <input name="attr_weapon_armor_5" type="hidden" value="Physical">
         <input name="attr_weapon_equipped" type="hidden" value="1">
         <input name="attr_weapon_name" type="hidden">
         <input name="attr_weap_property" type="hidden" value="">
@@ -36,7 +46,15 @@
         <input name="attr_weap_off" type="hidden" value="0">
         <input name="attr_weap_def" type="hidden" value="Stat">
         <input name="attr_weap_element" type="hidden" value="Non-Element">
-        
+
+        <input name="attr_weap_armor" type="hidden" value="Physical">
+        <input name="attr_wd_earth" type="hidden" value="0">
+        <input name="attr_wd_air" type="hidden" value="0">
+        <input name="attr_wd_fire" type="hidden" value="0">
+        <input name="attr_wd_water" type="hidden" value="0">
+        <input name="attr_wd_physical" type="hidden" value="1">
+        <input name="attr_wd_magical" type="hidden" value="0">
+
         <input name="attr_amon_hp_1" type="hidden" value="0">
         <input name="attr_amon_mp_1" type="hidden" value="0">
 
@@ -347,15 +365,13 @@
                 <option value="4">4th</option>
                 <option value="5">5th</option>
             </select>
-            <button type="roll" name="roll_attack" class="attackRoll" value="&{template:default} {{name=@{character_name} !Attack}}{{Attack=[[@{weap_off}+1d100-@{weap_dif}}]] vs @{weap_def} }}{{Damage=[[@{weap_dmg}+1d10]] vs @{weap_def}, Physical @{weap_element}}}{{Property=@{weap_property} }}">!Attack</button>
             <div class="equippedWeaponTextContainer">
                 <span name="attr_weap_name"></span>
-                <span> Dmg: </span><span name="attr_weap_dmg"> </span>
-                <span name="attr_weap_element"></span>
-                <br />
-                <span> Property: </span><span name="attr_weap_property"></span>
-            
             </div>
+            <button type="roll" name="roll_attack" class="attackRoll" value="&{template:default}{{name=@{character_name} !Attacks vs @{target|token_name}}}{{Attack=[[@{weap_off}+1d100-@{weap_dif}]] vs @{weap_def} ([[(@{target|earth}*@{wd_earth})+(@{target|air}*@{wd_air})+(@{target|fire}*@{wd_fire})+(@{target|water}*@{wd_water})]])}}{{Critical=[[1t[Crit]]]}}{{Raw=@{weap_dmg}+1d10 vs @{weap_def}, @{weap_armor} @{weap_element}}}{{Damage=[[@{weap_dmg}+1d10-(@{target|armor}*@{wd_physical})-(@{target|marmor}*@{wd_magical})]] after armor}}{{Property=@{weap_property} }}">!Attack</button>
+            <button type="roll" name="roll_dodge" class="attackRoll" value="&{template:default}{{name=@{character_name} attempts to !Dodge against @{target|token_name} }}{{Dodge=[[1d100+@{air}-70]] vs @{target|token_name} Air (@{target|air})}}{{Notes=If successful avoid the incoming physical attack.}}{{Cost=!Reaction, @{character_name} must choose an initiative die to spend.}}">!Dodge</button>
+            <button type="roll" name="roll_flee" class="attackRoll" value="&{template:default}{{name=@{character_name} attempts to flee against @{target|token_name}}}{{Flee=[[1d100+@{air}-40]] vs @{target|token_name} Air (@{target|air})}}{{Notes=Flees combat if the roll beats the highest Air amongst the enemies present}}">!Flee</button>
+            
             <br />
             
         
@@ -413,7 +429,11 @@
                 <option value="Light">Light</option>
                 <option value="Shadow">Shadow</option>
                 <option value="Non-Element">Non-Element</option>
-            </select><br />
+            </select>
+            <select name="attr_weapon_armor_1" class="wepArmor">
+                <option value="Physical">Physical</option>
+                <option value="Magical">Magical</option>
+            </select>
             <input type="text" name="attr_weapon_property_1" placeholder="Weapon Property (if any)" class="wepProperty" /><br /><br />
 
             <span class="fourd">2nd:</span>
@@ -449,6 +469,10 @@
                 <option value="Light">Light</option>
                 <option value="Shadow">Shadow</option>
                 <option value="Non-Element">Non-Element</option>
+            </select>
+            <select name="attr_weapon_armor_2" class="wepArmor">
+                <option value="Physical">Physical</option>
+                <option value="Magical">Magical</option>
             </select>
             <input type="text" name="attr_weapon_property_2" placeholder="Weapon Property (if any)" class="wepProperty" /><br /><br />
             
@@ -486,8 +510,14 @@
                 <option value="Shadow">Shadow</option>
                 <option value="Non-Element">Non-Element</option>
             </select>
+            <select name="attr_weapon_armor_3" class="wepArmor">
+                <option value="Physical">Physical</option>
+                <option value="Magical">Magical</option>
+            </select>
             <input type="text" name="attr_weapon_property_3" placeholder="Weapon Property (if any)"  class="wepProperty"  /><br /><br />
             
+
+
             <span class="fourd">4th:</span>
             <input type="text" name="attr_weapon_name_4" placeholder="Weapon Name" class="weaponName" />
             <span>Dmg: </span><span name="attr_weapon_dmg_4" class="fourd"></span>
@@ -521,6 +551,10 @@
                 <option value="Light">Light</option>
                 <option value="Shadow">Shadow</option>
                 <option value="Non-Element">Non-Element</option>
+            </select>
+            <select name="attr_weapon_armor_4" class="wepArmor">
+                <option value="Physical">Physical</option>
+                <option value="Magical">Magical</option>
             </select>
             <input type="text" name="attr_weapon_property_4" placeholder="Weapon Property (if any)"  class="wepProperty" /><br /><br />
             
@@ -558,7 +592,14 @@
                 <option value="Shadow">Shadow</option>
                 <option value="Non-Element">Non-Element</option>
             </select>
+            <select name="attr_weapon_armor_5" class="wepArmor">
+                <option value="Physical">Physical</option>
+                <option value="Magical">Magical</option>
+            </select>
             <input type="text" name="attr_weapon_property_5" placeholder="Weapon Property (if any)" class="wepProperty" />
+
+
+
         </div>
         <div class="abilityContain">
             <hr />
@@ -1266,7 +1307,7 @@ function updateEquippedWeapon(equipped)
     {
         case 1:
             //one = "on";
-            getAttrs(["weapon_name_1","weapon_dmg_1","weapon_property_1","weapon_element_1","weapon_dif_1","weapon_dstat_1","weapon_astat_1","Earth","Air","Fire","Water"], function(values)
+            getAttrs(["weapon_name_1","weapon_dmg_1","weapon_property_1","weapon_element_1","weapon_dif_1","weapon_dstat_1","weapon_armor_1","weapon_astat_1","Earth","Air","Fire","Water"], function(values)
             {
 
                 setAttrs({weap_dmg: values.weapon_dmg_1});
@@ -1292,12 +1333,31 @@ function updateEquippedWeapon(equipped)
                     default:
                         setAttrs({weap_off: 0});
                 }
+                setAttrs({wd_earth: 0});
+                setAttrs({wd_air: 0});
+                setAttrs({wd_fire: 0});
+                setAttrs({wd_water: 0});
+                switch(values.weapon_dstat_1)
+                {
+                    case "Earth":
+                        setAttrs({wd_earth: 1});
+                        break;
+                    case "Air":
+                        setAttrs({wd_air: 1});
+                        break;
+                    case "Fire":
+                        setAttrs({wd_fire: 1});
+                        break;
+                    case "Water":
+                        setAttrs({wd_water: 1});
+                        break;
+                }
                 //setAttrs({weapon_equipped: 1});
             });
             break;
         case 2:
             //two = "on";
-            getAttrs(["weapon_name_2","weapon_dmg_2","weapon_property_2","weapon_element_2","weapon_dif_2","weapon_dstat_2","weapon_astat_2","Earth","Air","Fire","Water"], function(values)
+            getAttrs(["weapon_name_2","weapon_dmg_2","weapon_property_2","weapon_element_2","weapon_dif_2","weapon_dstat_2","weapon_armor_2","weapon_astat_2","Earth","Air","Fire","Water"], function(values)
             {
                 setAttrs({weap_dmg: values.weapon_dmg_2});
                 setAttrs({weap_name: values.weapon_name_2});
@@ -1322,12 +1382,31 @@ function updateEquippedWeapon(equipped)
                     default:
                         setAttrs({weap_off: 0});
                 }
+                setAttrs({wd_earth: 0});
+                setAttrs({wd_air: 0});
+                setAttrs({wd_fire: 0});
+                setAttrs({wd_water: 0});
+                switch(values.weapon_dstat_2)
+                {
+                    case "Earth":
+                        setAttrs({wd_earth: 1});
+                        break;
+                    case "Air":
+                        setAttrs({wd_air: 1});
+                        break;
+                    case "Fire":
+                        setAttrs({wd_fire: 1});
+                        break;
+                    case "Water":
+                        setAttrs({wd_water: 1});
+                        break;
+                }
                 //setAttrs({weapon_equipped: 2});
             });
             break;
         case 3:
             //three = "on";
-            getAttrs(["weapon_name_3","weapon_dmg_3","weapon_property_3","weapon_element_3","weapon_dif_3","weapon_dstat_3","weapon_astat_3","Earth","Air","Fire","Water"], function(values)
+            getAttrs(["weapon_name_3","weapon_dmg_3","weapon_property_3","weapon_element_3","weapon_dif_3","weapon_dstat_3","weapon_armor_3","weapon_astat_3","Earth","Air","Fire","Water"], function(values)
             {
                 setAttrs({weap_dmg: values.weapon_dmg_3});
                 setAttrs({weap_name: values.weapon_name_3});
@@ -1352,12 +1431,31 @@ function updateEquippedWeapon(equipped)
                     default:
                         setAttrs({weap_off: 0});
                 }
+                setAttrs({wd_earth: 0});
+                setAttrs({wd_air: 0});
+                setAttrs({wd_fire: 0});
+                setAttrs({wd_water: 0});
+                switch(values.weapon_dstat_3)
+                {
+                    case "Earth":
+                        setAttrs({wd_earth: 1});
+                        break;
+                    case "Air":
+                        setAttrs({wd_air: 1});
+                        break;
+                    case "Fire":
+                        setAttrs({wd_fire: 1});
+                        break;
+                    case "Water":
+                        setAttrs({wd_water: 1});
+                        break;
+                }
                 //setAttrs({weapon_equipped: 3});
             });
             break;
         case 4:
             //four = "on";
-            getAttrs(["weapon_name_4","weapon_dmg_4","weapon_property_4","weapon_element_4","weapon_dif_4","weapon_dstat_4","weapon_astat_4","Earth","Air","Fire","Water"], function(values)
+            getAttrs(["weapon_name_4","weapon_dmg_4","weapon_property_4","weapon_element_4","weapon_dif_4","weapon_dstat_4","weapon_armor_4","weapon_astat_4","Earth","Air","Fire","Water"], function(values)
             {
                 setAttrs({weap_dmg: values.weapon_dmg_4});
                 setAttrs({weap_name: values.weapon_name_4});
@@ -1382,12 +1480,31 @@ function updateEquippedWeapon(equipped)
                     default:
                         setAttrs({weap_off: 0});
                 }
+                setAttrs({wd_earth: 0});
+                setAttrs({wd_air: 0});
+                setAttrs({wd_fire: 0});
+                setAttrs({wd_water: 0});
+                switch(values.weapon_dstat_4)
+                {
+                    case "Earth":
+                        setAttrs({wd_earth: 1});
+                        break;
+                    case "Air":
+                        setAttrs({wd_air: 1});
+                        break;
+                    case "Fire":
+                        setAttrs({wd_fire: 1});
+                        break;
+                    case "Water":
+                        setAttrs({wd_water: 1});
+                        break;
+                }
                 //setAttrs({weapon_equipped: 4});
             });
             break;
         case 5:
             //five = "on";
-            getAttrs(["weapon_name_5","weapon_dmg_5","weapon_property_5","weapon_element_5","weapon_dif_5","weapon_dstat_5","weapon_astat_5","Earth","Air","Fire","Water"], function(values)
+            getAttrs(["weapon_name_5","weapon_dmg_5","weapon_property_5","weapon_element_5","weapon_dif_5","weapon_dstat_5","weapon_armor_5","weapon_astat_5","Earth","Air","Fire","Water"], function(values)
             {
                 setAttrs({weap_dmg: values.weapon_dmg_5});
                 setAttrs({weap_name: values.weapon_name_5});
@@ -1412,7 +1529,37 @@ function updateEquippedWeapon(equipped)
                     default:
                         setAttrs({weap_off: 0});
                 }
+                setAttrs({wd_earth: 0});
+                setAttrs({wd_air: 0});
+                setAttrs({wd_fire: 0});
+                setAttrs({wd_water: 0});
+                switch(values.weapon_dstat_5)
+                {
+                    case "Earth":
+                        setAttrs({wd_earth: 1});
+                        break;
+                    case "Air":
+                        setAttrs({wd_air: 1});
+                        break;
+                    case "Fire":
+                        setAttrs({wd_fire: 1});
+                        break;
+                    case "Water":
+                        setAttrs({wd_water: 1});
+                        break;
+                }
                 //setAttrs({weapon_equipped: 5});
+                switch(values.weapon_armor_5)
+                {
+                    case "Physical":
+                        setAttrs({wd_physical: 1});
+                        setAttrs({wd_magical: 0});
+                        break;
+                    case "Magical":
+                        setAttrs({wd_physical: 0});
+                        setAttrs({wd_magical: 1});
+                        break;
+                }
             });
             break;
     }
