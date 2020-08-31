@@ -369,8 +369,11 @@
                 <span name="attr_weap_name"></span>
             </div>
             <button type="roll" name="roll_attack" class="attackRoll" value="&{template:default}{{name=@{character_name} !Attacks vs @{target|token_name}}}{{Attack=[[@{weap_off}+1d100-@{weap_dif}]] vs @{weap_def} ([[(@{target|earth}*@{wd_earth})+(@{target|air}*@{wd_air})+(@{target|fire}*@{wd_fire})+(@{target|water}*@{wd_water})]])}}{{Critical=[[1t[Crit]]]}}{{Raw=@{weap_dmg}+1d10 vs @{weap_def}, @{weap_armor} @{weap_element}}}{{Damage=[[@{weap_dmg}+1d10-(@{target|armor}*@{wd_physical})-(@{target|marmor}*@{wd_magical})]] after armor}}{{Property=@{weap_property} }}">!Attack</button>
+
             <button type="roll" name="roll_dodge" class="attackRoll" value="&{template:default}{{name=@{character_name} attempts to !Dodge against @{target|token_name} }}{{Dodge=[[1d100+@{air}-70]] vs @{target|token_name} Air (@{target|air})}}{{Notes=If successful avoid the incoming physical attack.}}{{Cost=!Reaction, @{character_name} must choose an initiative die to spend.}}">!Dodge</button>
             <button type="roll" name="roll_flee" class="attackRoll" value="&{template:default}{{name=@{character_name} attempts to flee against @{target|token_name}}}{{Flee=[[1d100+@{air}-40]] vs @{target|token_name} Air (@{target|air})}}{{Notes=Flees combat if the roll beats the highest Air amongst the enemies present}}">!Flee</button>
+            <button type="roll" name="roll_attack" class="attackRoll" value="&{template:default}{{name=@{character_name} !Attacks vs @{target|token_name}}}{{Attack=[[@{weap_off}+2d100k1-@{weap_dif}]] vs @{weap_def} ([[(@{target|earth}*@{wd_earth})+(@{target|air}*@{wd_air})+(@{target|fire}*@{wd_fire})+(@{target|water}*@{wd_water})]])}}{{Critical=[[1t[Crit]]]}}{{Raw=@{weap_dmg}+1d10 vs @{weap_def}, @{weap_armor} @{weap_element}}}{{Damage=[[@{weap_dmg}+1d10-(@{target|armor}*@{wd_physical})-(@{target|marmor}*@{wd_magical})]] after armor}}{{Property=@{weap_property} }}">vs Curse !Attack</button>
+            <button type="roll" name="roll_attack" class="attackRoll" value="&{template:default}{{name=@{character_name} !Attacks vs @{target|token_name}}}{{Attack=[[@{weap_off}+2d100kl1-@{weap_dif}]] vs @{weap_def} ([[(@{target|earth}*@{wd_earth})+(@{target|air}*@{wd_air})+(@{target|fire}*@{wd_fire})+(@{target|water}*@{wd_water})]])}}{{Critical=[[1t[Crit]]]}}{{Raw=@{weap_dmg}+1d10 vs @{weap_def}, @{weap_armor} @{weap_element}}}{{Damage=[[@{weap_dmg}+1d10-(@{target|armor}*@{wd_physical})-(@{target|marmor}*@{wd_magical})]] after armor}}{{Property=@{weap_property} }}">While Blind !Attack</button>
             
             <br />
             
@@ -1237,6 +1240,28 @@
         -->
 
     <!--</div>-->
+
+
+
+<!-- ---------------Custom Roll Template -------------------------->
+
+<rolltemplate class="sheet-rolltemplate-custom">
+  <div class="sheet-container sheet-color-{{color}}">
+    <div class="sheet-header">
+      {{#title}}<div class="sheet-title">{{title}}</div>{{/title}}
+      {{#subtitle}}<div class="sheet-subtitle">{{subtitle}}</div>{{/subtitle}}
+    </div>
+    <div class="sheet-content">
+      {{#allprops() title subtitle desc color}}
+      <div class="sheet-key">{{key}}</div>
+      <div class="sheet-value">{{value}}</div>
+      {{/allprops() title subtitle desc color}}
+      {{#desc}}<div class="sheet-desc">{{desc}}</div>{{/desc}}
+    </div>
+  </div>
+</rolltemplate>
+
+<!-- ---------------End of Custom Roll Template -------------------------->
 
 <!-- Sheet Workers -->
 <script type="text/worker">
